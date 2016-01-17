@@ -1,0 +1,84 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+			<nav class="navbar navbar-default navbar-fixed-top fadeInDown" data-wow-delay="0.2s">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header page-scroll">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navigation">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand smoothie" href="index.html">JHB METRO <span class="theme-accent-color">CHESS</span></a>
+				</div>
+				<div id="navbar-social">
+					<ul class="smoothie list-inline social-links">
+						<li>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-pinterest"></i></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-dribbble"></i></a>
+						</li>
+						<li>
+							<a href="https://www.facebook.com/Jhb-Metro-Chess-497575840365249/"><i class="fa fa-facebook"></i></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-behance"></i></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-linkedin"></i></a>
+						</li>
+					</ul>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="main-navigation">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="/">Home</a>
+						</li>
+						<li class="dropdown">
+							<a href="/coaches/" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Coaches<span class="pe-7s-angle-down"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="/coaches/#jhbnorth">Jhb North</a></li>
+								<li><a href="/coaches/#jhbsouth">Jhb South</a></li>
+								<li><a href="/coaches/#jhbeast">Jhb East</a></li>
+								<li><a href="/coaches/#jhbwest">Jhb West</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="/tournaments/" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Tournaments<span class="pe-7s-angle-down"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="/tournaments/">Upcoming</a></li>
+								<li><a href="/tournaments/#inprogress">In Progress</a></li>
+								<li><a href="/tournaments/#previous">Previous</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="/chess-clubs/" >Clubs</a>
+						</li>
+						<li class="dropdown">
+							<a href="/news/">News</a>
+						</li>
+						<li><a href="#search"><i class="pe-7s-search"></i></a></li>
+
+					</ul>
+
+				</div>
+				<!-- /.navbar-collapse -->
+
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+
+		<div id="search-wrapper">
+			<button type="button" class="close">×</button>
+			<form>
+				<input type="search" value="" placeholder="Enter Search Term" />
+				<button type="submit" class="btn btn-primary">Search</button>
+			</form>
+		</div>

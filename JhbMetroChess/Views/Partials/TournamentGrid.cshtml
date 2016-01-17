@@ -1,0 +1,34 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+<ul class="portfolio-items nopadding-lr isotope list-unstyled">
+	@foreach (var tournament in Model.Content.)
+	{
+		<li class="col-sm-4 col-xs-6 portfolio-item @Umbraco.TournamentStatus((DateTime)tournament.startDate,(DateTime)tournament.endDate) isotope-item">
+			<div class="col-xs-12 nopadding-lr hover-item">
+				<img src="@Umbraco.Media(tournament.Parent().tournamentBackground).Url" class="img-responsive smoothie" alt="">
+				<div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
+					<div class="vertical-center smoothie">
+						<strong class="heading-font"><span class="theme-accent-color-bg">@tournament.startDate.ToString("d MMM yyyy")</span></strong>
+						<h3><a href="single-post.html" title="view project">@tournament.Name</a></h3>
+					</div>
+				</div>
+				<div class="hover-item-caption smoothie">
+					<div class="vertical-center smoothie">
+						@*<a href="@tournament.tournamentDetails" title="view Tournament Details" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa ">Details</i></a>*@
+						<a href="@tournament.tournamentDetails" target="_blank" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Details</i></a>
+
+						@if (tournament.startDate > DateTime.Now)
+						{
+							<a href="@Umbraco.NiceUrl(tournament.Id)" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Enter</i></a>
+						}
+						@if (!string.IsNullOrEmpty(tournament.resultsLink))
+						{
+							<a href="@tournament.resultsLink" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Results</i></a>
+						}
+					</div>
+					<span class="theme-accent-color-bg hover-bar"></span>
+				</div>
+			</div>
+		</li>
+	}
+</ul>
