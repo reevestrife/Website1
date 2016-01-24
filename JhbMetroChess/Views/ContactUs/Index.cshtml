@@ -1,0 +1,19 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+<section id="ContactUs" class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media(CurrentPage.Site().contactUsBackground).Url" data-speed="0.8">
+	<div class="section-inner">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div id="message"></div>
+					<form method="post" action="/umbraco/surface/ContactUs/SubmitTournamentForm" id="PostContactUs" class="main-contact-form wow fadeIn" data-wow-delay="0.2s">
+						<input type="text" class="form-control col-md-4" name="Name" placeholder="Your Name *" id="Name" required data-validation-required-message="Please enter your name." />
+						<input type="text" class="form-control col-md-4" name="Email" placeholder="Your Email *" id="Email" required data-validation-required-message="Please enter your email address." />
+						<input type="text" class="form-control col-md-4" name="Phone" placeholder="Your Contact Number *" id="Phone" required data-validation-required-message="Please enter your a number where we can contact you." />
+						<textarea name="Comments" class="form-control" id="Comments" placeholder="Your Message *" required data-validation-required-message="Please enter a message."></textarea>
+						<input class="btn btn-primary mt30 pull-right" type="submit" name="submit" value="Submit" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

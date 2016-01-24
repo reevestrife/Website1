@@ -1,0 +1,31 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using JhbMetroChess.Model;
+
+the TOurnament Id is @Model.MacroParameters["tournamentId"] thankyou!
+
+
+@*<section id="ContactUs" class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media(CurrentPage.Site().contactUsBackground).Url" data-speed="0.8">
+	<div class="section-inner">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div id="message"></div>
+					<form method="post" action="sendemail.php" id="contactform" class="main-contact-form wow fadeIn" data-wow-delay="0.2s">
+						<input type="text" class="form-control col-md-4" name="name" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name." />
+						<input type="text" class="form-control col-md-4" name="email" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address." />
+						<input type="text" class="form-control col-md-4" name="phone" placeholder="Your Contact Number *" id="phone" required data-validation-required-message="Please enter your a number where we can contact you." />
+						<textarea name="comments" class="form-control" id="comments" placeholder="Your Message *" required data-validation-required-message="Please enter a message."></textarea>
+						<input class="btn btn-primary mt30 pull-right" type="submit" name="submit" value="Submit" />
+					</form>
+				
+					
+					@using (Html.BeginUmbracoForm("SubmitTournamentForm", "TournamentSignup"))
+					{
+						<input type="text" class="form-control col-md-4" name="Surname" placeholder="Your Name *" id="Surname" required data-validation-required-message="Please enter your name." />
+						<input class="btn btn-primary mt30 pull-right" type="submit" name="submit" value="Submit" />
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>*@

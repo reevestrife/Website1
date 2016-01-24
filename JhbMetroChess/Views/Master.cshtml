@@ -54,41 +54,21 @@
 		<!-- Navigation -->
 		@{ Html.RenderPartial("MainNavigation"); }
 
-		
-
-
 		@RenderBody()
-
-		<section>
-			<div id="mapwrapper"></div>
-		</section>
 
 		<footer class="white-wrapper">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
-						<span class="copyright">Copyright 2015. Designed by DISTINCTIVE THEMES</span>
+						<span class="copyright">Copyright @DateTime.Now.Year. JHB Metro Chess</span>
 					</div>
 					<div class="col-md-6 text-right">
 						<ul class="list-inline social-links wow fadeIn" data-wow-delay="0.2s">
+							
 							<li>
-								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="@CurrentPage.Site().facebookLink" target="_blank"><i class="fa fa-facebook"></i></a>
 							</li>
-							<li>
-								<a href="#"><i class="fa fa-pinterest"></i></a>
-							</li>
-							<li>
-								<a href="#"><i class="fa fa-dribbble"></i></a>
-							</li>
-							<li>
-								<a href="#"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li>
-								<a href="#"><i class="fa fa-behance"></i></a>
-							</li>
-							<li>
-								<a href="#"><i class="fa fa-linkedin"></i></a>
-							</li>
+							
 						</ul>
 					</div>
 				</div>
@@ -114,9 +94,9 @@
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
-	<script type="text/javascript">
-		@RenderSection("Scripts",false)
-	</script>
+	
+	@RenderSection("Scripts",false)
+	
 </body>
 </html>
 

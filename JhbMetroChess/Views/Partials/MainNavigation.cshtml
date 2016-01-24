@@ -1,5 +1,7 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-
+@{ 
+	var home = CurrentPage.Site();
+}
 			<nav class="navbar navbar-default navbar-fixed-top fadeInDown" data-wow-delay="0.2s">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -10,27 +12,12 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand smoothie" href="index.html">JHB METRO <span class="theme-accent-color">CHESS</span></a>
+					<a class="navbar-brand smoothie">JHB METRO <span class="theme-accent-color">CHESS</span></a>
 				</div>
 				<div id="navbar-social">
 					<ul class="smoothie list-inline social-links">
 						<li>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-pinterest"></i></a>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-dribbble"></i></a>
-						</li>
-						<li>
-							<a href="https://www.facebook.com/Jhb-Metro-Chess-497575840365249/"><i class="fa fa-facebook"></i></a>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-behance"></i></a>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-linkedin"></i></a>
+							<a target="_blank" href="@home.facebookLink"><i class="fa fa-facebook"></i></a>
 						</li>
 					</ul>
 				</div>
@@ -42,29 +29,32 @@
 							<a href="/">Home</a>
 						</li>
 						<li class="dropdown">
-							<a href="/coaches/" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Coaches<span class="pe-7s-angle-down"></span></a>
+							<a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">About Us<span class="pe-7s-angle-down"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/coaches/#jhbnorth">Jhb North</a></li>
-								<li><a href="/coaches/#jhbsouth">Jhb South</a></li>
-								<li><a href="/coaches/#jhbeast">Jhb East</a></li>
-								<li><a href="/coaches/#jhbwest">Jhb West</a></li>
+								<li><a href="#AwesomeTeam" class="page-scroll" >Management</a></li>
+								<li><a href="@home.constitution">Constitution</a></li>
+								<li><a href="@home.selection">Selection</a></li>
+								<li><a href="/banking-details/">Banking Details</a></li>
+								<li><a href="#ContactUs" class="page-scroll" >Contact Us</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Members<span class="pe-7s-angle-down"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="/member-signup/">Registration</a></li>
+								<li><a>Rankings (coming soon)</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
 							<a href="/tournaments/" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Tournaments<span class="pe-7s-angle-down"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="/tournaments/">Upcoming</a></li>
-								<li><a href="/tournaments/#inprogress">In Progress</a></li>
-								<li><a href="/tournaments/#previous">Previous</a></li>
-							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="/chess-clubs/" >Clubs</a>
+							<a href="#ChessClubs" class="page-scroll" >Clubs</a>
 						</li>
-						<li class="dropdown">
+						@*<li class="dropdown">
 							<a href="/news/">News</a>
-						</li>
-						<li><a href="#search"><i class="pe-7s-search"></i></a></li>
+						</li>*@
+						@*<li><a href="#search"><i class="pe-7s-search"></i></a></li>*@
 
 					</ul>
 

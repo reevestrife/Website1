@@ -1,4 +1,150 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
-    Layout = "Master.cshtml";
+	Layout = "Master.cshtml";
+	var templateAssets = @Url.Content("~/assets");
+	var tournament = CurrentPage;
+	var club = Umbraco.Content(tournament.club.ToString());
+
+}
+@section title {@CurrentPage.Name | @CurrentPage.pageTitle}
+
+<section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="assets/img/bg/bg4.jpg" data-speed="0.8">
+	<div class="section-inner">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 mt30 text-center wow fadeIn" data-wow-delay="0.2s">
+					<h2 class="section-heading">@tournament.Name</h2>
+					<h3 class="section-subheading text-muted secondary-font">Chess Tournament</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="section-inner">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 blog-item mb100 wow fadeIn" data-wow-delay="0.2s">
+					<div class="row">
+						<div class="col-xs-2">
+							<div class="post-date heading-font">
+								<span class="the-date">@tournament.startDate.ToString("dd")</span>
+								<span class="the-month">@tournament.startDate.ToString("MMM"), @tournament.startDate.ToString("yyyy")</span>
+							</div>
+						</div>
+						<div class="col-xs-10">
+							<h2 class="post-title">@tournament.Name</h2>
+							<div class="item-metas text-muted mb30">
+								<span class="meta-item"><i class="pe-icon pe-7s-folder"></i> VENUE <span class="secondary-font">@tournament.venue </span></span>
+								<span class="meta-item"><i class="pe-icon pe-7s-ticket"></i> ORGANISER <span class="secondary-font">@tournament.organiser</span></span>
+								<span class="meta-item"><i class="pe-icon pe-7s-user"></i>CLUB <span class="secondary-font">@club.Name</span></span>
+								<span class="meta-item"><i class="pe-icon pe-7s-comment"></i> RATING <span class="secondary-font">@tournament.rated</span></span>
+								<span class="meta-item"><i class="pe-icon pe-7s-comment"></i> CONTACT <span class="secondary-font">@tournament.contact</span></span>
+							</div>
+							@tournament.description
+							@if (!string.IsNullOrEmpty(tournament.tournamentDetails.ToString()))
+							{
+								<a class="btn btn-primary mt30" target="_blank" href="@tournament.tournamentDetails"><i class="fa fa-long-arrow-down"></i></a>
+							}
+							@if (tournament.startDate > DateTime.Now)
+							{
+								<a class="btn btn-primary mt30" href="#">Enter Online</a>
+							}
+							@if (!string.IsNullOrEmpty(tournament.facebookGallery))
+							{
+								<a class="btn btn-primary mt30" target="_blank" href="@tournament.facebookGallery">Photo Gallery</a>
+							}
+							@if (!string.IsNullOrEmpty(tournament.resultsLink))
+							{
+								<a class="btn btn-primary mt30" target="_blank" href="@tournament.resultsLink">Results</a>
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		@if (!string.IsNullOrEmpty(tournament.venueGpsLattitude) && !string.IsNullOrEmpty(tournament.venueGpsLongitude))
+		{
+		<div id="mapwrapper"></div>
+		}
+	</div>
+</section>
+
+@if (tournament.startDate > DateTime.Now)
+{
+	@Html.Action("TournamentForm", "TournamentSignup",
+	new
+	{
+		tournamentId = tournament.Id.ToString()
+	})
+}
+
+
+@section Scripts
+{
+	@if (!string.IsNullOrEmpty(tournament.venueGpsLattitude) && !string.IsNullOrEmpty(tournament.venueGpsLongitude))
+	{
+		<script type="text/javascript">
+			$(document).ready(function () {
+			$("#mapwrapper").gMap({
+			controls: true,
+			scrollwheel: false,
+			markers: [{
+			latitude: @tournament.venueGpsLattitude,
+			longitude: @tournament.venueGpsLongitude,
+			icon: {
+			image: "@(templateAssets)/img/marker.png",
+			iconsize: [44, 44],
+			iconanchor: [12, 46],
+			infowindowanchor: [12, 0]
+			}
+			}],
+			icon: {
+			image: "@(templateAssets)/img/marker.png",
+			iconsize: [26, 46],
+			iconanchor: [12, 46],
+			infowindowanchor: [12, 0]
+			},
+			latitude: @tournament.venueGpsLattitude,
+			longitude: @tournament.venueGpsLongitude,
+			zoom: 14,
+			styles: [{ "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#e9e9e9" }, { "lightness": 17 }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 20 }] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }, { "lightness": 17 }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#ffffff" }, { "lightness": 29 }, { "weight": 0.2 }] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 18 }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 16 }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 21 }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#dedede" }, { "lightness": 21 }] }, { "elementType": "labels.text.stroke", "stylers": [{ "visibility": "on" }, { "color": "#ffffff" }, { "lightness": 16 }] }, { "elementType": "labels.text.fill", "stylers": [{ "saturation": 36 }, { "color": "#333333" }, { "lightness": 40 }] }, { "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#f2f2f2" }, { "lightness": 19 }] }, { "featureType": "administrative", "elementType": "geometry.fill", "stylers": [{ "color": "#fefefe" }, { "lightness": 20 }] }, { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": [{ "color": "#fefefe" }, { "lightness": 17 }, { "weight": 1.2 }]
+			}]
+			});
+			});
+		</script>
+	}
+
+	<script type="text/javascript">
+		$('#tournamentEntryForm').submit(function () {
+		var action = $(this).attr('action');
+		$("#tournamentEntryForm").slideUp(750, function () {
+			$('#tournamentEntryForm').hide();
+			$('#submit').attr('disabled', 'disabled');
+			$.post(action, {
+				FirstName: $('#FirstName').val(),
+				Surname: $('#Surname').val(),
+				ChessaId: $('#ChessaId').val(),
+				DateOfBirth: $('#DateOfBirth').val(),
+				Gender: $('#Gender').val(),
+				EmailAddress: $('#EmailAddress').val(),
+				PhoneNumber: $('#PhoneNumber').val(),
+				Club: $('#Club').val(),
+				Section: $('#Section').val(),
+				Note: $('#Note').val()
+			},
+				function (data) {
+			  	debugger;
+			  	document.getElementById('message').innerHTML = data;
+			  	$('#message').slideDown('slow');
+			  	$('#submit').removeAttr('disabled');
+			  	if (data.match('success') != null) $('#tournamentEntryForm').slideUp('slow');
+			  	$(window).trigger('resize');
+				}
+			);
+		});
+		return false;
+		});
+	</script>
 }

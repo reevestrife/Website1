@@ -80,6 +80,18 @@
       <HintPath>..\packages\Examine.0.1.68.0\lib\Examine.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Google.GData.Client, Version=2.2.0.0, Culture=neutral, PublicKeyToken=04a59ca9b0273830, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.GData.Client.2.2.0.0\lib\Google.GData.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.GData.Extensions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0b4c5df2ebf20876, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.GData.Extensions.2.2.0.0\lib\Google.GData.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.GData.Spreadsheets, Version=2.2.0.0, Culture=neutral, PublicKeyToken=3f77feb76ff0d9a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.GData.Spreadsheets.2.2.0.0\lib\Google.GData.Spreadsheets.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
@@ -418,7 +430,6 @@
     <Content Include="App_Data\NuGetBackup\20151215-141346\Config\Lang\ru-RU.user.xml" />
     <Content Include="App_Data\NuGetBackup\20151215-141346\Config\Lang\sv-SE.user.xml" />
     <Content Include="App_Data\NuGetBackup\20151215-141346\Config\Lang\zh-CN.user.xml" />
-    <Content Include="App_Data\TEMP\ClientDependency\DESKTOP-QN022OJ-ca6e6a093887bc8142eca015b4f8eac6-map.xml" />
     <Content Include="assets\css\animate.css" />
     <Content Include="assets\css\bootstrap.css" />
     <Content Include="assets\css\bootstrap.min.css" />
@@ -531,6 +542,114 @@
     <Content Include="assets\js\init.js" />
     <Content Include="assets\js\jquery.js" />
     <Content Include="assets\js\plugins.js" />
+    <Content Include="MailTemplates\MemberSignup.html" />
+    <Content Include="MailTemplates\ContactUs.html" />
+    <Content Include="MailTemplates\TournamentSignup.html" />
+    <Content Include="media\1001\bn-gj136_chess_j_20150109120327.jpg" />
+    <Content Include="media\1001\bn-gj136_chess_j_20150109120327_big-thumb.jpg" />
+    <Content Include="media\1001\bn-gj136_chess_j_20150109120327_thumb.jpg" />
+    <Content Include="media\1002\10195_dgt_plastic_chess_pieces_be14ce0e-a506-4250-b4ce-a7b68e87ad96.jpg" />
+    <Content Include="media\1002\10195_dgt_plastic_chess_pieces_be14ce0e-a506-4250-b4ce-a7b68e87ad96_big-thumb.jpg" />
+    <Content Include="media\1002\10195_dgt_plastic_chess_pieces_be14ce0e-a506-4250-b4ce-a7b68e87ad96_thumb.jpg" />
+    <Content Include="media\1003\chessbackground1.jpg" />
+    <Content Include="media\1003\chessbackground1_big-thumb.jpg" />
+    <Content Include="media\1003\chessbackground1_thumb.jpg" />
+    <Content Include="media\1004\image-hero.jpg" />
+    <Content Include="media\1004\image-hero_big-thumb.jpg" />
+    <Content Include="media\1004\image-hero_thumb.jpg" />
+    <Content Include="media\1005\plasticpieces_white_1_3.jpg" />
+    <Content Include="media\1005\plasticpieces_white_1_3_big-thumb.jpg" />
+    <Content Include="media\1005\plasticpieces_white_1_3_thumb.jpg" />
+    <Content Include="media\1006\tournament1050.jpg" />
+    <Content Include="media\1006\tournament1050_big-thumb.jpg" />
+    <Content Include="media\1006\tournament1050_thumb.jpg" />
+    <Content Include="media\1007\live-life-like-game-of-chess-ftr.jpg" />
+    <Content Include="media\1007\live-life-like-game-of-chess-ftr_big-thumb.jpg" />
+    <Content Include="media\1007\live-life-like-game-of-chess-ftr_thumb.jpg" />
+    <Content Include="media\1008\jhbmetrochess.png" />
+    <Content Include="media\1008\jhbmetrochess_thumb.jpg" />
+    <Content Include="media\1009\dsc_0354-e1438934693405.jpg" />
+    <Content Include="media\1009\dsc_0354-e1438934693405_big-thumb.jpg" />
+    <Content Include="media\1009\dsc_0354-e1438934693405_thumb.jpg" />
+    <Content Include="media\1010\twitterknight.jpg" />
+    <Content Include="media\1011\reevestrife_thumb.jpg" />
+    <Content Include="media\1017\profilepic.jpg" />
+    <Content Include="media\1017\profilepic_thumb.jpg" />
+    <Content Include="media\1018\profilepic.jpg" />
+    <Content Include="media\1018\profilepic_thumb.jpg" />
+    <Content Include="media\1019\profilepic.jpg" />
+    <Content Include="media\1019\profilepic_thumb.jpg" />
+    <Content Include="media\1020\profilepic.jpg" />
+    <Content Include="media\1020\profilepic_thumb.jpg" />
+    <Content Include="media\1021\profilepic.jpg" />
+    <Content Include="media\1021\profilepic_thumb.jpg" />
+    <Content Include="media\1022\small_tournament.jpg" />
+    <Content Include="media\1022\small_tournament_thumb.jpg" />
+    <Content Include="media\1023\twitterknight.jpg" />
+    <Content Include="media\1023\twitterknight_thumb.jpg" />
+    <Content Include="media\1024\houseofchesstransparent.png" />
+    <Content Include="media\1024\houseofchesstransparent_thumb.jpg" />
+    <Content Include="media\1024\twitterknight_thumb.jpg" />
+    <Content Include="media\1025\small_tournament.jpg" />
+    <Content Include="media\1025\small_tournament_thumb.jpg" />
+    <Content Include="media\1026\houseofchesssquare.jpg" />
+    <Content Include="media\1026\houseofchesssquare_big-thumb.jpg" />
+    <Content Include="media\1026\houseofchesssquare_thumb.jpg" />
+    <Content Include="media\1026\houseofchesstransparentsquare_thumb.jpg" />
+    <Content Include="media\1026\houseofchess_thumb.jpg" />
+    <Content Include="media\1027\6912301-wooden-chess-pictures.jpg" />
+    <Content Include="media\1027\6912301-wooden-chess-pictures_big-thumb.jpg" />
+    <Content Include="media\1027\6912301-wooden-chess-pictures_thumb.jpg" />
+    <Content Include="media\1028\345389202_a81e4d43e7_b.jpg" />
+    <Content Include="media\1028\345389202_a81e4d43e7_b_big-thumb.jpg" />
+    <Content Include="media\1028\345389202_a81e4d43e7_b_thumb.jpg" />
+    <Content Include="media\1029\chessa.png" />
+    <Content Include="media\1030\fide.png" />
+    <Content Include="media\1030\fide_thumb.jpg" />
+    <Content Include="media\1031\border-chess-union.png" />
+    <Content Include="media\1031\border-chess-union_thumb.jpg" />
+    <Content Include="media\1032\nelsonmandelaybay.png" />
+    <Content Include="media\1033\westernprovince.png" />
+    <Content Include="media\1033\westernprovince_thumb.jpg" />
+    <Content Include="media\1034\freestate.png" />
+    <Content Include="media\1034\freestate_thumb.jpg" />
+    <Content Include="media\1035\1chess.jpg" />
+    <Content Include="media\1035\1chess_big-thumb.jpg" />
+    <Content Include="media\1035\1chess_thumb.jpg" />
+    <Content Include="media\1036\404434-sepik.jpg" />
+    <Content Include="media\1036\404434-sepik_big-thumb.jpg" />
+    <Content Include="media\1036\404434-sepik_thumb.jpg" />
+    <Content Include="media\1037\6833823-chess.jpg" />
+    <Content Include="media\1037\6833823-chess_big-thumb.jpg" />
+    <Content Include="media\1037\6833823-chess_thumb.jpg" />
+    <Content Include="media\1038\blurrychess800x600.jpeg" />
+    <Content Include="media\1038\blurrychess800x600_big-thumb.jpg" />
+    <Content Include="media\1038\blurrychess800x600_thumb.jpg" />
+    <Content Include="media\1039\chess-20100220-0008-as-smart-object-1.jpeg" />
+    <Content Include="media\1039\chess-20100220-0008-as-smart-object-1_big-thumb.jpg" />
+    <Content Include="media\1039\chess-20100220-0008-as-smart-object-1_thumb.jpg" />
+    <Content Include="media\1040\chess-board.jpg" />
+    <Content Include="media\1040\chess-board_big-thumb.jpg" />
+    <Content Include="media\1040\chess-board_thumb.jpg" />
+    <Content Include="media\1041\chess-board-closeup.jpg" />
+    <Content Include="media\1041\chess-board-closeup_big-thumb.jpg" />
+    <Content Include="media\1041\chess-board-closeup_thumb.jpg" />
+    <Content Include="media\1042\dc62bcc54aef04d063e7387395a02a76.jpg" />
+    <Content Include="media\1042\dc62bcc54aef04d063e7387395a02a76_big-thumb.jpg" />
+    <Content Include="media\1042\dc62bcc54aef04d063e7387395a02a76_thumb.jpg" />
+    <Content Include="media\1043\royale-8f-1.jpg" />
+    <Content Include="media\1043\royale-8f-1_thumb.jpg" />
+    <Content Include="media\1044\slide-3.jpg" />
+    <Content Include="media\1044\slide-3_big-thumb.jpg" />
+    <Content Include="media\1044\slide-3_thumb.jpg" />
+    <Content Include="media\1045\small-chess-board.jpg" />
+    <Content Include="media\1045\small-chess-board_thumb.jpg" />
+    <Content Include="media\1046\small_bw_queen-on-board.jpg" />
+    <Content Include="media\1046\small_bw_queen-on-board_thumb.jpg" />
+    <Content Include="media\1047\small_knight_on-board.jpg" />
+    <Content Include="media\1047\small_knight_on-board_thumb.jpg" />
+    <Content Include="media\1048\small_square_pieces.jpg" />
+    <Content Include="media\1048\small_square_pieces_thumb.jpg" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1018,7 +1137,6 @@
     <Content Include="umbraco\Images\Umbraco\userGroup.gif" />
     <Content Include="umbraco\Images\Umbraco\userType.gif" />
     <Content Include="umbraco\installer.html" />
-    <Content Include="umbraco\Install\Legacy\loadStarterKits.ascx" />
     <Content Include="umbraco\Js\app.js" />
     <Content Include="umbraco\Js\canvasdesigner.config.js" />
     <Content Include="umbraco\Js\canvasdesigner.front.js" />
@@ -2981,8 +3099,6 @@
     <Content Include="umbraco\assets\less\radius.less" />
     <Content Include="umbraco\assets\less\shadow.less" />
     <Content Include="umbraco\assets\less\slider.less" />
-    <Content Include="umbraco\Install\Views\Index.cshtml" />
-    <Content Include="umbraco\Install\Views\Web.config" />
     <Content Include="umbraco\lib\angular-dynamic-locale\tmhDynamicLocale.min.js.map" />
     <Content Include="umbraco\lib\bootstrap-tabdrop\README.md" />
     <Content Include="umbraco\lib\bootstrap\less\accordion.less" />
@@ -3083,7 +3199,6 @@
     <Content Include="umbraco\Webservices\TagsAutoCompleteHandler.ashx" />
     <Content Include="umbraco\Webservices\TreeDataService.ashx" />
     <Content Include="umbraco\Webservices\UltimatePickerAutoCompleteHandler.ashx" />
-    <Content Include="umbraco\Xslt\Web.config" />
     <Content Include="App_Data\Logs\UmbracoTraceLog.DESKTOP-QN022OJ.txt.2015-12-17" />
     <Content Include="App_Data\NuGetBackup\20151215-141336\CopyLogs\UmbracoBinBackup.log" />
     <Content Include="App_Data\NuGetBackup\20151215-141346\Config\404handlers.config" />
@@ -3106,14 +3221,6 @@
     <Content Include="App_Data\NuGetBackup\20151215-141346\CopyLogs\ConfigBackup.log" />
     <Content Include="App_Data\NuGetBackup\20151215-141346\Web.config" />
     <Content Include="App_Data\packages\installed\installedPackages.config" />
-    <Content Include="App_Data\TEMP\ExamineIndexes\DESKTOP-QN022OJ\External\Index\segments.gen" />
-    <Content Include="App_Data\TEMP\ExamineIndexes\DESKTOP-QN022OJ\External\Index\segments_3" />
-    <Content Include="App_Data\TEMP\ExamineIndexes\DESKTOP-QN022OJ\InternalMember\Index\segments.gen" />
-    <Content Include="App_Data\TEMP\ExamineIndexes\DESKTOP-QN022OJ\InternalMember\Index\segments_3" />
-    <Content Include="App_Data\TEMP\ExamineIndexes\DESKTOP-QN022OJ\Internal\Index\segments.gen" />
-    <Content Include="App_Data\TEMP\ExamineIndexes\DESKTOP-QN022OJ\Internal\Index\segments_3" />
-    <Content Include="App_Data\TEMP\PluginCache\umbraco-plugins.DESKTOP-QN022OJ.hash" />
-    <Content Include="App_Data\TEMP\PluginCache\umbraco-plugins.DESKTOP-QN022OJ.list" />
     <Content Include="App_Data\umbraco.config" />
     <Content Include="App_Browsers\Form.browser" />
     <Content Include="App_Browsers\w3cvalidator.browser" />
@@ -3125,6 +3232,20 @@
     <Content Include="Views\TournamentContainer.cshtml" />
     <Content Include="Views\ClubContainer.cshtml" />
     <Content Include="Views\Partials\TournamentGrid.cshtml" />
+    <Content Include="media\1011\mychesstournamentdetailspdf.pdf" />
+    <Content Include="media\1012\mychesstournamentdetailspdf.pdf" />
+    <Content Include="media\1014\mychesstournamentdetailspdf.pdf" />
+    <Content Include="media\1015\mychesstournamentdetailspdf.pdf" />
+    <Content Include="media\1016\mychesstournamentdetailspdf.pdf" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
+    <Content Include="Views\Club.cshtml" />
+    <Content Include="Views\EnterTournament.cshtml" />
+    <Content Include="Views\MacroPartials\TournamentOnlineEntryForm.cshtml" />
+    <Content Include="Views\TournamentSignup\TournamentForm.cshtml" />
+    <Content Include="Views\ContentPage.cshtml" />
+    <Content Include="Views\ContactUs\Index.cshtml" />
+    <Content Include="Views\MemberSignup\TournamentForm.cshtml" />
+    <Content Include="Views\MemberSignup.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3161,14 +3282,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\UmbracoRazorExtensions.cs" />
+    <Compile Include="Model\ContactUs.cs" />
+    <Compile Include="Model\MemberSignup.cs" />
+    <Compile Include="Model\TournamentEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SurfaceControllers\ContactUsController.cs" />
+    <Compile Include="SurfaceControllers\MemberSignupController.cs" />
+    <Compile Include="SurfaceControllers\TournamentSignupController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\packages\created\" />
-    <Folder Include="App_Data\TEMP\DistCache\DESKTOP-QN022OJ\" />
-    <Folder Include="App_Data\TEMP\Install\" />
-    <Folder Include="media\" />
-    <Folder Include="Views\MacroPartials\" />
+    <Folder Include="media\1013\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

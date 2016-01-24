@@ -142,29 +142,7 @@ $(document).ready(function(){
     
     $('.vertical-center').flexVerticalCenter({ cssAttribute: 'padding-top' });
 
-    //CONTACT FORM
-    $('#contactform').submit(function(){
-      var action = $(this).attr('action');
-      $("#message").slideUp(750,function() {
-      $('#message').hide();
-      $('#submit').attr('disabled','disabled');
-      $.post(action, {
-        name: $('#name').val(),
-        email: $('#email').val(),
-        website: $('#website').val(),
-        comments: $('#comments').val()
-      },
-        function(data){
-          document.getElementById('message').innerHTML = data;
-          $('#message').slideDown('slow');
-          $('#submit').removeAttr('disabled');
-          if(data.match('success') != null) $('#contactform').slideUp('slow');
-          $(window).trigger('resize');
-        }
-      );
-      });
-      return false;
-    });
+
 
     $(".rotate").textrotator({
       animation: "dissolve",
@@ -180,26 +158,6 @@ $(document).ready(function(){
     });
 
 
-    $("#mapwrapper").gMap({ 
-        controls: true,
-        scrollwheel: false,
-        markers: [{     
-            latitude:40.7566,
-            longitude: -73.9863,
-        icon: { image: "assets/img/marker.png",
-            iconsize: [44,44],
-            iconanchor: [12,46],
-            infowindowanchor: [12, 0] } }],
-        icon: { 
-            image: "assets/img/marker.png", 
-            iconsize: [26, 46],
-            iconanchor: [12, 46],
-            infowindowanchor: [12, 0] },
-        latitude:40.7566,
-        longitude: -73.9863,
-        zoom: 14,
-        styles: [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}]
-    });
 
     //SIDE NAV MOBILE
     $('#side-menu-toggle').on('click', function(event){

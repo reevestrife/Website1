@@ -6,6 +6,7 @@
 	var clubContainer = CurrentPage.Site().Children.Where("DocumentTypeAlias == @0", "Clubcontainer").First();
 	var clubs = clubContainer.Children.Where("DocumentTypeAlias == @0", "Club");
 }
+@section title {@CurrentPage.Name | @CurrentPage.pageTitle}
 
 <section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media(clubContainer.topbanner).Url" data-speed="0.8">
     <div class="section-inner">
@@ -33,12 +34,12 @@
                 <ul class="portfolio-items nopadding-lr isotope list-unstyled">
 				@foreach (var club in clubs)
 				{
-					<li class="col-sm-4 col-xs-6 portfolio-item isotope-item">
+					@*<li class="col-sm-4 col-xs-6 portfolio-item isotope-item">
 						<div class="col-xs-12 nopadding-lr hover-item">
 							<img src="@Umbraco.Media(clubContainer.clubBackground).Url" class="img-responsive smoothie" alt="">
 							<div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
 								<div class="vertical-center smoothie">
-									@*<strong class="heading-font"><span class="theme-accent-color-bg">@tournament.startDate.ToString("d MMM yyyy")</span></strong>*@
+									
 									<h3><a href="single-post.html" title="view project">@club.Name</a></h3>
 								</div>
 							</div>
@@ -50,6 +51,34 @@
 								<span class="theme-accent-color-bg hover-bar"></span>
 							</div>
 						</div>
+					</li>*@
+					<li>
+						<div class="row hover-item">
+							<div class="col-xs-12">
+								<img src="@Umbraco.Media(clubContainer.clubBackground).Url" class="img-responsive smoothie" alt="">
+							</div>
+							<div class="col-xs-12 overlay-item-caption smoothie"></div>
+							<div class="col-xs-12 hover-item-caption smoothie">
+								<div class="vertical-center">
+									<h3 class="smoothie"><a href="single-portfolio.html" title="view project">@club.Name</a></h3>
+									<ul class="smoothie list social-links wow fadeIn" data-wow-delay="0.2s">
+										<li style="text-align:left;">
+											<a href="#"><i class="fa "></i>President: @club.president</a>
+										</li>
+										<li style="text-align:left;">
+											<a href="#"><i class="fa "></i>Phone: @club.presidentCell</a>
+										</li>
+										<li style="text-align:left;">
+											<a href="@club.presidentEmail"><i class="fa "></i>Email: @club.presidentEmail</a>
+										</li>
+										<li style="text-align:left;">
+											<a href="@club.webAddress"><i class="fa "></i>Website: @club.webAddress</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<span class="theme-accent-color-bg hover-bar"></span>
+						</div>
 					</li>
 				}
                 </ul>
@@ -58,21 +87,3 @@
     </div>
 </section>
 
-<section class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="@templateAssets/img/bg/bg_bw1.jpg" data-speed="0.8">
-    <div class="section-inner">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="message"></div>
-                    <form method="post" action="sendemail.php" id="contactform" class="main-contact-form wow fadeIn" data-wow-delay="0.2s">
-                        <input type="text" class="form-control col-md-4" name="name" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name." />
-                        <input type="text" class="form-control col-md-4" name="email" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address." />
-                        <input type="text" class="form-control col-md-4" name="website" placeholder="Your URL *" id="website" required data-validation-required-message="Please enter your web address." />
-                        <textarea name="comments" class="form-control" id="comments" placeholder="Your Message *" required data-validation-required-message="Please enter a message."></textarea>
-                        <input class="btn btn-primary mt30 pull-right" type="submit" name="submit" value="Submit" />
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>

@@ -1,0 +1,14 @@
+{
+  "id": "89aa3edb-ed89-4588-9692-feb532056b61",
+  "name": "Send email to gw.pretorius@gmail.com when submitted",
+  "form": "fcd4f9ae-8b2a-409a-9c84-b207fcfb18c4",
+  "active": true,
+  "workflowTypeId": "e96badd7-05be-4978-b8d9-b3d733de70a5",
+  "executesOn": "Submitted",
+  "settings": {
+    "Email": "gw.pretorius@gmail.com",
+    "Subject": "the form Contact Us was submitted",
+    "Message": "the form Contact Us was submitted, this is the list of values it contained, you can turn this email off under workflows in Umbraco Contour"
+  },
+  "sortOrder": 0
+}

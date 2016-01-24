@@ -1,0 +1,26 @@
+﻿@inherits UmbracoViewPage<JhbMetroChess.Model.TournamentEntry>
+<section id="ContactUs" class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="/i.jpg" data-speed="0.8">
+	<div class="section-inner">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div id="message"></div>
+					<form method="post" action="/umbraco/surface/TournamentSignup/SubmitTournamentForm" id="tournamentEntryForm" class="main-contact-form wow fadeIn" data-wow-delay="0.2s" enctype="multipart/form-data">
+						<input type="hidden"  name="Tournament" id="Tournament" value="@Model.Tournament"  />
+						<input type="text" class="form-control col-md-4" name="FirstName" id="FirstName" placeholder="First Name *" required data-validation-required-message="Please enter your first name." />
+						<input type="text" class="form-control col-md-4" name="Surname" id="Surname" placeholder="Surname *" required data-validation-required-message="Please enter your surname." />
+						<input type="text" class="form-control col-md-4" name="ChessaId" id="ChessaId" placeholder="CHESSA ID*"   required data-validation-required-message="Please enter your CHESSA ID." />
+						<input type="text" class="form-control col-md-4" name="DateOfBirth" id="DateOfBirth" placeholder="Date of Birth *" required data-validation-required-message="Please enter your Date of Birth." />
+						<input type="text" class="form-control col-md-4" name="Gender" id="Gender" placeholder="Gender *" required data-validation-required-message="Please enter your Gender." />
+						<input type="text" class="form-control col-md-4" name="EmailAddress" id="EmailAddress" placeholder="Email Address *" required data-validation-required-message="Please enter your Email Address" />
+						<input type="text" class="form-control col-md-4" name="PhoneNumber" id="PhoneNumber" placeholder="Phone Number *" required data-validation-required-message="Please enter your Phone Number." />
+						<input type="text" class="form-control col-md-4" name="Club" id="Club" placeholder="Club *" required data-validation-required-message="Please enter your Club." />
+						<input type="text" class="form-control col-md-4" name="Section" id="Section" placeholder="Section*" required data-validation-required-message="Please enter your Section." />
+						<textarea name="Note" class="form-control" id="Note" placeholder="Aditional notes"></textarea>
+						<input class="btn btn-primary mt30 pull-right" type="submit" name="submit" value="Submit" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
