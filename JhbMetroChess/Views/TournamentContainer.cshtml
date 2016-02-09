@@ -4,10 +4,10 @@
 	Layout = "Master.cshtml";
 	var templateAssets = @Url.Content("~/assets");
 	var tournamentContainer = CurrentPage.Site().Children.Where("DocumentTypeAlias == @0", "Tournamentcontainer").First();
-	var tournaments = tournamentContainer.Children.Where("DocumentTypeAlias == @0", "Tournament");
+	var tournaments = tournamentContainer.Children.Where("DocumentTypeAlias == @0", "Tournament").OrderBy("startDate"); 
 }
 @section title {@CurrentPage.Name | @CurrentPage.pageTitle}
-<section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media(tournamentContainer.topbanner).Url" data-speed="0.8">
+<section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media((string)CurrentPage.primarybanner).Url" data-speed="0.8">
     <div class="section-inner">
         <div class="container">
             <div class="row">
@@ -43,13 +43,15 @@
 							</div>
 							<div class="hover-item-caption smoothie">
 								<div class="vertical-center smoothie">
-									
+									@if (!string.IsNullOrEmpty(tournament.tournamentDetails))
+									{
 									<a href="@tournament.tournamentDetails" target="_blank"class="smoothie btn btn-primary btn-white page-scroll"><i class="fa fa-long-arrow-down"></i></a>
+									}
 									<a href="@Umbraco.NiceUrl(tournament.Id)" target="_blank" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Details</i></a>
 									
-									@if (tournament.startDate > DateTime.Now)
+									@if (tournament.startDate > DateTime.Now && !string.IsNullOrEmpty(tournament.onlineEntries))
 									{
-										<a href="@Umbraco.NiceUrl(tournament.Id)" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Enter</i></a>
+										<a href="@Umbraco.NiceUrl(tournament.Id)#Enter" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Enter</i></a>
 									}
 									@if (!string.IsNullOrEmpty(tournament.resultsLink))
 									{
@@ -67,21 +69,3 @@
     </div>
 </section>
 
-<section class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="@templateAssets/img/bg/bg_bw1.jpg" data-speed="0.8">
-    <div class="section-inner">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="message"></div>
-                    <form method="post" action="sendemail.php" id="contactform" class="main-contact-form wow fadeIn" data-wow-delay="0.2s">
-                        <input type="text" class="form-control col-md-4" name="name" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name." />
-                        <input type="text" class="form-control col-md-4" name="email" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address." />
-                        <input type="text" class="form-control col-md-4" name="website" placeholder="Your URL *" id="website" required data-validation-required-message="Please enter your web address." />
-                        <textarea name="comments" class="form-control" id="comments" placeholder="Your Message *" required data-validation-required-message="Please enter a message."></textarea>
-                        <input class="btn btn-primary mt30 pull-right" type="submit" name="submit" value="Submit" />
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>

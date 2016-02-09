@@ -3,7 +3,7 @@
     Layout = "Master.cshtml";
 }
 @section title {@CurrentPage.pageTitle}
-<section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="assets/img/bg/bg2.jpg" data-speed="0.8">
+<section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media((string)CurrentPage.primarybanner).Url" data-speed="0.8">
     <div class="section-inner">
         <div class="container">
             <div class="row">
@@ -16,8 +16,23 @@
         </div>
     </div>
 </section>
-
-<section id="ContactUs" class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="/i.jpg" data-speed="0.8">
+<section id="ContactUs" class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media((string)CurrentPage.secondarybanner).Url" data-speed="0.8">
+	<div class="section-inner">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-10">
+					<h2 class="post-title">@CurrentPage.Name</h2>
+				</div>
+				<div class="col-xs-10 post-center single-post-content">
+					<div class="mb50">
+						@CurrentPage.content
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="MemberSignup" class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media((string)CurrentPage.secondarybanner).Url" data-speed="0.8">
 	<div class="section-inner">
 		<div class="container">
 			<div class="row">
@@ -32,7 +47,13 @@
 						<input type="text" class="form-control col-md-4" name="EmailAddress" id="EmailAddress" placeholder="Email Address *" required data-validation-required-message="Please enter your Email Address" />
 						<input type="text" class="form-control col-md-4" name="PhoneNumber" id="PhoneNumber" placeholder="Phone Number *" required data-validation-required-message="Please enter your Phone Number." />
 						<input type="text" class="form-control col-md-4" name="Club" id="Club" placeholder="Club *" required data-validation-required-message="Please enter your Club." />
-						<input type="text" class="form-control col-md-4" name="Section" id="Section" placeholder="Section*" required data-validation-required-message="Please enter your Section." />
+						<input type="text" class="form-control col-md-4" name="School" id="School" placeholder="School/University" required data-validation-required-message="Please enter your School or University" />
+
+						<h3>Minors</h3>
+						<p>If a Prospective member is a minor, we require the following information of the parent for verification purporses.</p>
+						<input type="text" class="form-control col-md-4" name="Occupation" id="Occupation" placeholder="Occupation" required data-validation-required-message="For verification purposes" />
+						<input type="text" class="form-control col-md-4" name="Employer" id="Employer" placeholder="Employer" required data-validation-required-message="For verification purposes" />
+
 						<textarea name="Note" class="form-control" id="Note" placeholder="Aditional notes"></textarea>
 						<input class="btn btn-primary mt30 pull-right" type="submit" name="submit" value="Submit" />
 					</form>

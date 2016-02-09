@@ -1,4 +1,5 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using JhbMetroChess.Extensions
 @{ 
 	var home = CurrentPage.Site();
 }
@@ -29,27 +30,36 @@
 							<a href="/">Home</a>
 						</li>
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">About Us<span class="pe-7s-angle-down"></span></a>
+							<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" >About Us<span class="pe-7s-angle-down"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#AwesomeTeam" class="page-scroll" >Management</a></li>
-								<li><a href="@home.constitution">Constitution</a></li>
-								<li><a href="@home.selection">Selection</a></li>
+								<li><a href="@Umbraco.HomeIfNotHome((string)CurrentPage.DocumentTypeAlias)#AboutUs" class="page-scroll">About Us</a></li>
+								<li><a href="@Umbraco.HomeIfNotHome((string)CurrentPage.DocumentTypeAlias)#AwesomeTeam" class="page-scroll" >Our Team</a></li>
+								<li><a href="@home.constitution" target="_blank">Constitution</a></li>
+								<li><a href="@home.selection" target="_blank">Selection (2015)</a></li>
 								<li><a href="/banking-details/">Banking Details</a></li>
-								<li><a href="#ContactUs" class="page-scroll" >Contact Us</a></li>
+								
+								<li><a href="@Umbraco.HomeIfNotHome((string)CurrentPage.DocumentTypeAlias)#ContactUs" class="page-scroll" >Contact Us</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Members<span class="pe-7s-angle-down"></span></a>
+							<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Members<span class="pe-7s-angle-down"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="/member-signup/">Registration</a></li>
-								<li><a>Rankings (coming soon)</a></li>
+								<li><a href="#">Rankings (coming soon)</a></li>
+								<li><a href="#">Members List (coming soon)</a></li>
+								<li><a href="/fee-structure/" class="page-scroll">Fee Structure @DateTime.Now.Year</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="/tournaments/" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Tournaments<span class="pe-7s-angle-down"></span></a>
+							<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Tournaments<span class="pe-7s-angle-down"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="/tournaments">Tournaments</a></li>
+								<li><a href="@home.tournamentCalendarPdf" target="_blank" >@DateTime.Now.Year Calendar</a></li>
+							</ul>
 						</li>
+						
 						<li class="dropdown">
-							<a href="#ChessClubs" class="page-scroll" >Clubs</a>
+							<a href="@Umbraco.HomeIfNotHome((string)CurrentPage.DocumentTypeAlias)#ChessClubs" class="page-scroll" >Clubs</a>
 						</li>
 						@*<li class="dropdown">
 							<a href="/news/">News</a>

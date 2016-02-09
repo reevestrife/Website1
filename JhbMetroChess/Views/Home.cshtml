@@ -6,7 +6,8 @@
 	var home = CurrentPage.Site();
 
 	var tournamentContainer = CurrentPage.Site().Children.Where("DocumentTypeAlias == @0", "Tournamentcontainer").First();
-	var upcomingTournaments = tournamentContainer.Children.Where("DocumentTypeAlias == @0 && startDate > @1", "Tournament", DateTime.Now).Take(6);
+	var upcomingTournaments = tournamentContainer.Children.Where("DocumentTypeAlias == @0 && startDate > @1", "Tournament", DateTime.Now).Take(6).OrderBy("startDate");
+
 
 	var executivecontainer = CurrentPage.Site().Children.Where("DocumentTypeAlias == @0", "Executivecontainer").First();
 	var executives = executivecontainer.Children.Where("DocumentTypeAlias == @0", "Executive");
@@ -37,7 +38,7 @@
 			</div>
 		</div>
 		<div>
-			<div class="container">
+			<div class="container" id="AboutUs">
 				<div class="col-md-3">
 					<h2 class="mb50">About <span class="theme-accent-color">Us</span></h2>
 					<p class="lead">@home.aboutUsLargeText</p>
@@ -70,7 +71,7 @@
 						</div>
 						<div class="col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
 							<div class="icon-box-1 match-height mb30">
-								<a href="http://www.chess-results.com/" target="_blank">
+								<a href="@CurrentPage.chessResultsLink" target="_blank">
 									<i class="fa-4x pe-7s-network"></i>
 									<div class="content-area">
 										<h3 class="title">Chess Results</h3>
@@ -250,10 +251,18 @@
 								</div>
 								<div class="hover-item-caption smoothie">
 									<div class="vertical-center smoothie">
-										<a href="@templateAssets/img/portfolio/portfolio1.jpg" title="view Gallery" class="btn btn-primary btn-white page-scroll lb-link smoothie"><i class="fa ">Details</i></a>
-										<a href="single-portfolio-fullscreen-video.html" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Enter</i></a>
+										@if (!string.IsNullOrEmpty(tournament.tournamentDetails))
+										{
+											<a href="@tournament.tournamentDetails" target="_blank" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa fa-long-arrow-down"></i></a>
+										}
+										<a href="@Umbraco.NiceUrl(tournament.Id)" target="_blank" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Details</i></a>
+										@if (tournament.startDate > DateTime.Now && !string.IsNullOrEmpty(tournament.onlineEntries))
+										{
+											<a href="@Umbraco.NiceUrl(tournament.Id)#Enter" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Enter</i></a>
+										}
 									</div>
 									<span class="theme-accent-color-bg hover-bar"></span>
+									
 								</div>
 							</div>
 						</li>
@@ -437,7 +446,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center mb100">
-					<h2 class="section-heading">Our <span class="theme-accent-color">Awesome</span> Team</h2>
+					<h2 class="section-heading">Our <span class="theme-accent-color">Chess</span> Enthusiasts</h2>
 					<hr class="thin-hr">
 					<h3 class="section-subheading secondary-font">Dedicated to excellence</h3>
 				</div>
@@ -447,7 +456,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12">
-						<ul class="owl-carousel-paged testimonial-owl wow fadeIn list-unstyled" data-items="3" data-items-tablet="[768,2]" data-items-mobile="[479,1]">
+						<ul class="owl-carousel-paged testimonial-owl wow fadeIn list-unstyled" data-items="4" data-items-tablet="[768,2]" data-items-mobile="[479,1]">
 
 							@foreach (var executive in executives)
 							{
@@ -456,18 +465,33 @@
 										<div class="col-xs-12">
 											<img src="@executive.picture" class="img-responsive smoothie" alt="">
 										</div>
-										<div class="col-xs-12 overlay-item-caption smoothie"></div>
-										<div class="col-xs-12 hover-item-caption smoothie">
+										<div class="col-xs-12 overlay-item-caption smoothie">
 											<div class="vertical-center">
-												<h3 class="smoothie"><a href="single-portfolio.html" title="view project">@executive.Name</a></h3>
+												<h3 class="smoothie">@executive.Name</h3>
 												<ul class="smoothie list social-links wow fadeIn" data-wow-delay="0.2s">
-													<li style="text-align:left;">
+													<li style="text-align:left;" class="list-inline">
 														<a href="#"><i class="fa "></i>Designation: @executive.designation</a>
 													</li>
-													<li style="text-align:left;">
+													<li style="text-align:left;" class="list-inline">
 														<a href="#"><i class="fa "></i>Phone: @executive.telephone</a>
 													</li>
-													<li style="text-align:left;">
+													<li style="text-align:left;" class="list-inline">
+														<a href="mailto:@executive.email"><i class="fa "></i>Email: @executive.email</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div class="col-xs-12 hover-item-caption smoothie">
+											<div class="vertical-center">
+												<h3 class="smoothie">@executive.Name</h3>
+												<ul class="smoothie list social-links wow fadeIn" data-wow-delay="0.2s">
+													<li style="text-align:left;" class="list-inline">
+														<a href="#"><i class="fa "></i>Designation: @executive.designation</a>
+													</li>
+													<li style="text-align:left;" class="list-inline">
+														<a href="#"><i class="fa "></i>Phone: @executive.telephone</a>
+													</li>
+													<li style="text-align:left;" class="list-inline">
 														<a href="mailto:@executive.email"><i class="fa "></i>Email: @executive.email</a>
 													</li>
 												</ul>

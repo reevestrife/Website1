@@ -473,9 +473,13 @@
     <Content Include="assets\img\blog\blog9.jpg" />
     <Content Include="assets\img\drag.png" />
     <Content Include="assets\img\ico\apple-touch-icon-114x114.png" />
+    <Content Include="assets\img\ico\apple-touch-icon-120x120.png" />
     <Content Include="assets\img\ico\apple-touch-icon-144x144.png" />
+    <Content Include="assets\img\ico\apple-touch-icon-152x152.png" />
+    <Content Include="assets\img\ico\apple-touch-icon-180x180.png" />
     <Content Include="assets\img\ico\apple-touch-icon-57x57.png" />
     <Content Include="assets\img\ico\apple-touch-icon-72x72.png" />
+    <Content Include="assets\img\ico\apple-touch-icon-76x76.png" />
     <Content Include="assets\img\ico\apple-touch-icon.png" />
     <Content Include="assets\img\ico\favicon.ico" />
     <Content Include="assets\img\isometric-ipad-white.png" />
@@ -542,6 +546,7 @@
     <Content Include="assets\js\init.js" />
     <Content Include="assets\js\jquery.js" />
     <Content Include="assets\js\plugins.js" />
+    <Content Include="favicon.ico" />
     <Content Include="MailTemplates\MemberSignup.html" />
     <Content Include="MailTemplates\ContactUs.html" />
     <Content Include="MailTemplates\TournamentSignup.html" />
@@ -3244,7 +3249,6 @@
     <Content Include="Views\TournamentSignup\TournamentForm.cshtml" />
     <Content Include="Views\ContentPage.cshtml" />
     <Content Include="Views\ContactUs\Index.cshtml" />
-    <Content Include="Views\MemberSignup\TournamentForm.cshtml" />
     <Content Include="Views\MemberSignup.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

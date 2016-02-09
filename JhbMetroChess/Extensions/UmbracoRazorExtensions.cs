@@ -35,5 +35,16 @@ namespace JhbMetroChess.Extensions
 			}
 			return mainImage;
 		}
+
+
+										
+		public static string HomeIfNotHome(this UmbracoHelper umbraco,string documentTypeAlias)
+		{
+			if(documentTypeAlias == "Home")
+			{
+				return "";
+			}
+			return "/";
+		}
 	}
 }
