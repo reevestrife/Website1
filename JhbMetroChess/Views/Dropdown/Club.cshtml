@@ -1,0 +1,6 @@
+﻿@inherits UmbracoViewPage<List<JhbMetro.Admin.Model.zClub>>
+
+@foreach (var club in Model)
+{
+	<option value="@club.ClubShort">@club.ClubName</option>
+}

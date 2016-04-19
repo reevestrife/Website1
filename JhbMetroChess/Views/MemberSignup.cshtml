@@ -1,6 +1,8 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
-    Layout = "Master.cshtml";
+	Layout = "Master.cshtml";
+	var clubContainer = CurrentPage.Site().Children.Where("DocumentTypeAlias == @0", "Clubcontainer").First();
+	var clubs = clubContainer.Children.Where("DocumentTypeAlias == @0", "Club");
 }
 @section title {@CurrentPage.pageTitle}
 <section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media((string)CurrentPage.primarybanner).Url" data-speed="0.8">
@@ -16,7 +18,14 @@
         </div>
     </div>
 </section>
-<section id="ContactUs" class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media((string)CurrentPage.secondarybanner).Url" data-speed="0.8">
+@*<section id="ContactUs" class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media((string)CurrentPage.secondarybanner).Url" data-speed="0.8">
+	<div class="section-inner">
+		<div class="container">
+			
+		</div>
+	</div>
+</section>*@
+<section id="MemberSignup" class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media((string)CurrentPage.secondarybanner).Url" data-speed="0.8" itemscope itemtype="http://schema.org/WebApplication">
 	<div class="section-inner">
 		<div class="container">
 			<div class="row">
@@ -29,32 +38,37 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</section>
-<section id="MemberSignup" class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media((string)CurrentPage.secondarybanner).Url" data-speed="0.8">
-	<div class="section-inner">
-		<div class="container">
+			
 			<div class="row">
 				<div class="col-md-12">
 					<div id="message"></div>
 					<form method="post" action="/umbraco/surface/MemberSignup/PostMemberSignup" id="memberSignupForm" class="main-contact-form wow fadeIn" data-wow-delay="0.2s" enctype="multipart/form-data">
-						<input type="text" class="form-control col-md-4" name="FirstName" id="FirstName" placeholder="First Name *" required data-validation-required-message="Please enter your first name." />
+						<input type="text" class="form-control col-md-4 "  name="Name" id="Name" placeholder="Name *" required data-validation-required-message="Please enter your first name." />
 						<input type="text" class="form-control col-md-4" name="Surname" id="Surname" placeholder="Surname *" required data-validation-required-message="Please enter your surname." />
+						<input type="text" class="form-control col-md-4" name="PreferedName" id="PreferedName" placeholder="Prefered Name "/>
 						<input type="text" class="form-control col-md-4" name="ChessaId" id="ChessaId" placeholder="CHESSA ID*" required data-validation-required-message="Please enter your CHESSA ID." />
-						<input type="text" class="form-control col-md-4" name="DateOfBirth" id="DateOfBirth" placeholder="Date of Birth *" required data-validation-required-message="Please enter your Date of Birth." />
-						<input type="text" class="form-control col-md-4" name="Gender" id="Gender" placeholder="Gender *" required data-validation-required-message="Please enter your Gender." />
-						<input type="text" class="form-control col-md-4" name="EmailAddress" id="EmailAddress" placeholder="Email Address *" required data-validation-required-message="Please enter your Email Address" />
+						<input type="text" class="form-control col-md-4 bootstrapDatePicker" name="DateOfBirth" id="DateOfBirth" placeholder="Date of Birth *" required data-validation-required-message="Please enter your Date of Birth." />@*bootstrapDatePicker*@
+						<select id="Gender" name="Gender" class="form-control col-md-4" placeholder="Gender *" required data-validation-required-message="Please select gender." >
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+						</select>
+						<input type="email" class="form-control col-md-4" name="Email" id="Email" placeholder="Email Address *" required data-validation-required-message="Please enter your Email Address" />
 						<input type="text" class="form-control col-md-4" name="PhoneNumber" id="PhoneNumber" placeholder="Phone Number *" required data-validation-required-message="Please enter your Phone Number." />
-						<input type="text" class="form-control col-md-4" name="Club" id="Club" placeholder="Club *" required data-validation-required-message="Please enter your Club." />
-						<input type="text" class="form-control col-md-4" name="School" id="School" placeholder="School/University" required data-validation-required-message="Please enter your School or University" />
+						<select id="Club" name="Club" class="form-control col-md-4" placeholder="Club *" required data-validation-required-message="Please enter your Club.">
+							@Html.Action("Club", "Dropdown")
+						</select>
+						
+						@*<input type="text" class="form-control col-md-4" name="School" id="School" placeholder="School/University" required data-validation-required-message="Please enter your School or University" />*@
+						<br />
+						<h3 class="col-lg-12">Minors</h3>
+						<p class="col-lg-12">If a Prospective member is a minor, we require the following information of the parent for verification purporses.</p>
+						<input type="text" class="form-control col-md-4" name="ParentName" id="ParentName" placeholder="Parent Name and Surname" required data-validation-required-message="For verification purposes" />
+						<input type="text" class="form-control col-md-4" name="ParentEmail" id="ParentEmail" placeholder="Parent Email" required data-validation-required-message="For verification purposes" />
+						<input type="text" class="form-control col-md-4" name="ParentPhone" id="ParentPhone" placeholder="Parent Phone" required data-validation-required-message="For verification purposes" />
+						@*<input type="text" class="form-control col-md-4" name="Occupation" id="Occupation" placeholder="Occupation" required data-validation-required-message="For verification purposes" />*@
+						<input type="text" class="form-control col-md-4" name="ParentEmployer" id="ParentEmployer" placeholder="Employer" required data-validation-required-message="For verification purposes" />
 
-						<h3>Minors</h3>
-						<p>If a Prospective member is a minor, we require the following information of the parent for verification purporses.</p>
-						<input type="text" class="form-control col-md-4" name="Occupation" id="Occupation" placeholder="Occupation" required data-validation-required-message="For verification purposes" />
-						<input type="text" class="form-control col-md-4" name="Employer" id="Employer" placeholder="Employer" required data-validation-required-message="For verification purposes" />
-
-						<textarea name="Note" class="form-control" id="Note" placeholder="Aditional notes"></textarea>
+						<textarea name="Note" class="form-control" id="Note" placeholder="Additional notes"></textarea>
 						<input class="btn btn-primary mt30 pull-right" type="submit" name="submit" value="Submit" />
 					</form>
 				</div>
@@ -73,20 +87,10 @@
 		$("#memberSignupForm").slideUp(750, function () {
 			$('#memberSignupForm').hide();
 			$('#submit').attr('disabled', 'disabled');
-			$.post(action, {
-				FirstName: $('#FirstName').val(),
-				Surname: $('#Surname').val(),
-				ChessaId: $('#ChessaId').val(),
-				DateOfBirth: $('#DateOfBirth').val(),
-				Gender: $('#Gender').val(),
-				EmailAddress: $('#EmailAddress').val(),
-				PhoneNumber: $('#PhoneNumber').val(),
-				Club: $('#Club').val(),
-				Section: $('#Section').val(),
-				Note: $('#Note').val()
-			},
+			$.post(action,
+				$(this).serialize(),
 				function (data) {
-			  	debugger;
+			  //	debugger;
 			  	document.getElementById('message').innerHTML = data;
 			  	$('#message').slideDown('slow');
 			  	$('#submit').removeAttr('disabled');

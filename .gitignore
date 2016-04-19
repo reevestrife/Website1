@@ -194,3 +194,20 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+/JhbMetroChess/App_Data/NuGetBackup
+/JhbMetroChess/App_Data/cache
+/JhbMetroChess/App_Data/Logs
+/JhbMetroChess/App_Data/TEMP
+/JhbMetroChess/media
+/JhbMetroChess/media/1012
+/JhbMetroChess/media/1001
+/JhbMetroChess/media/1002
+/JhbMetroChess/media/1003
+/JhbMetroChess/media/1004
+/JhbMetroChess/media/1005
+/JhbMetroChess/media/1006
+/JhbMetroChess/media/1007
+/JhbMetroChess/media/1008
+/JhbMetroChess/media/1009
+/JhbMetroChess/media/1010
+/JhbMetroChess/media/1011

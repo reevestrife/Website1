@@ -1,7 +1,9 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using JhbMetroChess.Extensions
 @{
-	Layout = "Master.cshtml";
+	
+
+		Layout = "Master.cshtml";
 	var templateAssets = @Url.Content("~/assets");
 	var home = CurrentPage.Site();
 
@@ -26,11 +28,11 @@
 
 @{ Html.RenderPartial("FullSliderBanner"); }
 
-<section id="welcome">
+<section id="welcome" itemscope itemtype="http://schema.org/WebPage">
 	<div class="section-inner">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12 text-center mb100">
+				<div class="col-lg-12 text-center mb100" itemprop="headline">
 					<h2 class="section-heading">Welcome to JHB Metro <span class="theme-accent-color">Chess</span></h2>
 					<hr class="thin-hr">
 					<h3 class="section-subheading secondary-font">Where chess happens</h3>
@@ -38,8 +40,8 @@
 			</div>
 		</div>
 		<div>
-			<div class="container" id="AboutUs">
-				<div class="col-md-3">
+			<div class="container" id="AboutUs" >
+				<div class="col-md-3" itemscope itemprop="about">
 					<h2 class="mb50">About <span class="theme-accent-color">Us</span></h2>
 					<p class="lead">@home.aboutUsLargeText</p>
 					<p>@home.aboutUsSmallText</p>
@@ -47,12 +49,12 @@
 				</div>
 				<div class="col-md-8 col-md-offset-1">
 					<div class="row">
-						<div class="col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
+						<div class="col-sm-6 wow fadeInUp" data-wow-delay="0.2s" >
 							<div class="icon-box-1 match-height mb30">
-								<a target="_blank" href="@(CurrentPage.Site().facebookLink)photos_stream">
+								<a target="_blank" itemprop="url" href="@(CurrentPage.Site().facebookLink)photos_stream">
 									<i class="fa-4x pe-7s-camera"></i>
 									<div class="content-area">
-										<h3 class="title">Gallery</h3>
+										<h3 class="title" itemprop="headline">Gallery</h3>
 										<div class="content">View our photo albums on our Facebook page - while you are there, hit the like button.</div>
 									</div>
 								</a>
@@ -60,13 +62,13 @@
 						</div>
 						<div class="col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
 							<div class="icon-box-1 match-height mb30">
-								
+								<a href="/rankings/">
 									<i class="fa-4x pe-7s-graph1"></i>
 									<div class="content-area">
-										<h3 class="title">JMC Rankings</h3>
-										<div class="content">Coming soon.</div>
+										<h3 class="title" itemprop="headline">JMC Rankings</h3>
+										<div class="content">View member rankings.</div>
 									</div>
-								
+								</a>
 							</div>
 						</div>
 						<div class="col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
@@ -74,7 +76,7 @@
 								<a href="@CurrentPage.chessResultsLink" target="_blank">
 									<i class="fa-4x pe-7s-network"></i>
 									<div class="content-area">
-										<h3 class="title">Chess Results</h3>
+										<h3 class="title" itemprop="headline">Chess Results</h3>
 										<div class="content">View recent chess results. </div>
 									</div>
 								</a>
@@ -85,7 +87,7 @@
 								<a href="#ChessClubs" class="page-scroll">
 									<i class="fa-4x pe-7s-coffee"></i>
 									<div class="content-area">
-										<h3 class="title">Chess Clubs</h3>
+										<h3 class="title" itemprop="headline">Chess Clubs</h3>
 										<div class="content">Jhb Metro Chess is affiliated to many chess clubs in and around Johannesburg - all of them will welcome you with a friendly smile. View a list of them here.</div>
 									</div>
 								</a>
@@ -96,7 +98,7 @@
 								<a href="#ContactUs" class="page-scroll">
 									<i class="fa-4x pe-7s-headphones"></i>
 									<div class="content-area">
-										<h3 class="title">Contact Us</h3>
+										<h3 class="title" itemprop="headline" >Contact Us</h3>
 										<div class="content">Any queries, questions, suggestions, complaints or comments,  you can send here and we'll respond real sincere.</div>
 									</div>
 								</a>
@@ -107,7 +109,7 @@
 								<a href="#UpcomingTournaments" class="page-scroll">
 									<i class="fa fa-4x pe-7s-next"></i>
 									<div class="content-area">
-										<h3 class="title">Upcoming Tournaments</h3>
+										<h3 class="title" itemprop="headline">Upcoming Tournaments</h3>
 										<div class="content">View upcoming tournaments from your local clubs.</div>
 									</div>
 								</a>
@@ -120,116 +122,24 @@
 	</div>
 </section>
 
-@*<section class="dark-wrapper">
-	<div class="section-inner">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center mb100">
-					<h2 class="section-heading">Where we fit in the  <span class="theme-accent-color">Chess picture</span></h2>
-					<hr class="thin-hr">
-					<h3 class="section-subheading secondary-font">How it all fits together</h3>
-				</div>
-			</div>
-		</div>
-		<div class="wow fadeIn" data-wow-delay="0.2s">
-			<div class="container text-center">
-				<div class="row">
-					<div class="col-xs-12" role="tabpanel">
-						<div class="col-sm-12">
-							<!-- Nav tabs -->
-							<ul class="nav nav-justified icon-tabs" id="nav-tabs" role="tablist">
-								<li role="presentation" class="active">
-									<a href="#dustin" aria-controls="dustin" role="tab" data-toggle="tab">
-										<span class="fa-4x pe-7s-umbrella"></span>
-										<span class="tabtitle heading-font">Governing Chess body</span>
-									</a>
-								</li>
-								<li role="presentation" class="">
-									<a href="#daksh" aria-controls="daksh" role="tab" data-toggle="tab">
-										<span class="fa-4x pe-7s-culture"></span>
-										<span class="tabtitle heading-font">Union</span>
-									</a>
-								</li>
-								<li role="presentation" class="">
-									<a href="#anna" aria-controls="anna" role="tab" data-toggle="tab">
-										<span class="fa-4x pe-7s-coffee"></span>
-										<span class="tabtitle heading-font">Club</span>
-									</a>
-								</li>
-								<li role="presentation" class="">
-									<a href="#wafer" aria-controls="wafer" role="tab" data-toggle="tab">
-										<span class="fa-4x pe-7s-users"></span>
-										<span class="tabtitle heading-font">Coach</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-						<div class="col-sm-12 mt60">
-							<!-- Tab panes -->
-							<div class="tab-content" id="tabs-collapse">
-								<div role="tabpanel" class="tab-pane fade in active" id="dustin">
-									<div class="tab-inner pad-sides-60">
-										<p class="lead mb30">Is post each that just leaf no. He connection interested so we an sympathize advantages. To said is it shed want do. Occasional middletons everything so to. Have spot part for his quit may. End sitting shewing who saw besides son musical adapted. Contrasted interested eat alteration pianoforte sympathize was. He families believed if no elegance interest surprise an. It abode wrong miles an so delay plate.</p>
-										<a href="#" class="btn btn-primary btn-red page-scroll">Find out More</a>
-									</div>
-								</div>
-
-								<div role="tabpanel" class="tab-pane fade" id="daksh">
-									<div class="tab-inner pad-sides-60">
-										<p class="lead mb30">Is post each that just leaf no. He connection interested so we an sympathize advantages. To said is it shed want do. Occasional middletons everything so to. Have spot part for his quit may. End sitting shewing who saw besides son musical adapted. Contrasted interested eat alteration pianoforte sympathize was. He families believed if no elegance interest surprise an. It abode wrong miles an so delay plate.</p>
-										<a href="#" class="btn btn-primary btn-red page-scroll">Find out More</a>
-									</div>
-								</div>
-
-								<div role="tabpanel" class="tab-pane fade" id="anna">
-									<div class="tab-inner pad-sides-60">
-										<p class="lead mb30">Is post each that just leaf no. He connection interested so we an sympathize advantages. To said is it shed want do. Occasional middletons everything so to. Have spot part for his quit may. End sitting shewing who saw besides son musical adapted. Contrasted interested eat alteration pianoforte sympathize was. He families believed if no elegance interest surprise an. It abode wrong miles an so delay plate.</p>
-										<a href="#" class="btn btn-primary btn-red page-scroll">Find out More</a>
-									</div>
-								</div>
-
-								<div role="tabpanel" class="tab-pane fade" id="wafer">
-									<div class="tab-inner pad-sides-60">
-										<p class="lead mb30">Is post each that just leaf no. He connection interested so we an sympathize advantages. To said is it shed want do. Occasional middletons everything so to. Have spot part for his quit may. End sitting shewing who saw besides son musical adapted. Contrasted interested eat alteration pianoforte sympathize was. He families believed if no elegance interest surprise an. It abode wrong miles an so delay plate.</p>
-										<a href="#" class="btn btn-primary btn-red page-scroll">Find out More</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>*@
-
-
-<div class="col-sm-6 nopadding-lr silver-bg">
+<div class="col-sm-6 nopadding-lr silver-bg" itemscope itemtype="http://schema.org/Article">
 	<div class="section-inner pad-sides-60 match-height" data-mh="promo-inner">
 		@home.whiteNews
-		@*<h3 class="mb50">Experience <span class="theme-accent-color">Piper</span></h3>
-		<p class="lead mb50">Conveniently leverage other's distinctive expertise and backend metrics. Progressively harness intuitive systems and ethical niches. Continually drive extensible benefits vis-a-vis leading-edge meta-services. Conveniently leverage existing market-driven outsourcing vis-a-vis e-business process improvements. Intrinsicly extend quality interfaces with intermandated innovation.</p>
-		<p class="mb50">Quickly network web-enabled alignments without bleeding-edge supply chains. Credibly network sticky growth strategies via excellent infomediaries. Dramatically grow prospective core competencies whereas one-to-one manufactured products. Competently impact web-enabled deliverables without prospective bandwidth. Credibly matrix team building e-markets via B2B alignments.</p>
-		<p class="mt30"><a href="#contact" class="btn btn-primary page-scroll">Find Out More</a></p>*@
 	</div>
 </div>
-<div class="col-sm-6 nopadding-lr dark-wrapper opaqued background-cover" style="background-image: url('@Umbraco.Media(home.blackNewsBackground).Url');">
+<div class="col-sm-6 nopadding-lr dark-wrapper opaqued background-cover" style="background-image: url('@Umbraco.Media(home.blackNewsBackground).Url');" itemscope itemtype="http://schema.org/Article">
 	<div class="dark-opaqued-half section-inner pad-sides-60 match-height text-right" data-mh="promo-inner">
 		@home.BlackNews
-		@*<h3 class="mb50">Global <span class="theme-accent-color">Influence</span></h3>
-		<p class="lead mb50">Conveniently leverage other's distinctive expertise and backend metrics. Progressively harness intuitive systems and ethical niches. Continually drive extensible benefits vis-a-vis leading-edge meta-services. Conveniently leverage existing market-driven outsourcing vis-a-vis e-business process improvements. Intrinsicly extend quality interfaces with intermandated innovation.</p>
-		<p class="mb50">Quickly network web-enabled alignments without bleeding-edge supply chains. Credibly network sticky growth strategies via excellent infomediaries. Dramatically grow prospective core competencies whereas one-to-one manufactured products. Competently impact web-enabled deliverables without prospective bandwidth. Credibly matrix team building e-markets via B2B alignments.</p>
-		<p class="mt30"><a href="#contact" class="btn btn-primary btn-white page-scroll">Find Out More</a></p>*@
 	</div>
 </div>
 
 
-<section class="white-bg" id="UpcomingTournaments">
+<section class="white-bg" id="UpcomingTournaments" itemprop="events" itemscope itemtype="http://schema.org/Event">
 	<div class="section-inner">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center mb100">
-					<h2 class="section-heading">Upcoming <span class="theme-accent-color">Chess</span> Tournaments</h2>
+					<h2 class="section-heading" itemprop="headline">Upcoming <span class="theme-accent-color">Chess</span> Tournaments</h2>
 					<hr class="thin-hr">
 					<h3 class="section-subheading secondary-font">come put your game to the test</h3>
 				</div>
@@ -241,28 +151,27 @@
 					@foreach (var tournament in upcomingTournaments)
 					{
 						<li class="col-sm-4 col-xs-6 portfolio-item @Umbraco.TournamentStatus((DateTime)tournament.startDate,(DateTime)tournament.endDate) isotope-item">
-							<div class="col-xs-12 nopadding-lr hover-item">
-								<img src="@Umbraco.Media(tournamentContainer.tournamentBackground).Url" class="img-responsive smoothie" alt="">
+							<div class="col-xs-12 nopadding-lr hover-item" itemprop="event" itemscope itemtype="http://schema.org/Event">
+								<img src="@Umbraco.Media(tournamentContainer.tournamentBackground).Url" itemprop="thumbnailUrl" class="img-responsive smoothie" alt="">
 								<div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
 									<div class="vertical-center smoothie">
-										<strong class="heading-font"><span class="theme-accent-color-bg">@tournament.startDate.ToString("d MMM yyyy")</span></strong>
-										<h3><a href="single-post.html" title="view project">@tournament.Name</a></h3>
+										<strong class="heading-font"><span class="theme-accent-color-bg" itemprop="startDate">@tournament.startDate.ToString("d MMM yyyy")</span></strong>
+										<h3><a href="@Umbraco.NiceUrl(tournament.Id)" title="@tournament.Name">@tournament.Name</a></h3>
 									</div>
 								</div>
 								<div class="hover-item-caption smoothie">
 									<div class="vertical-center smoothie">
 										@if (!string.IsNullOrEmpty(tournament.tournamentDetails))
 										{
-											<a href="@tournament.tournamentDetails" target="_blank" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa fa-long-arrow-down"></i></a>
+											<a href="@tournament.tournamentDetails"  target="_blank" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa fa-long-arrow-down"></i></a>
 										}
 										<a href="@Umbraco.NiceUrl(tournament.Id)" target="_blank" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Details</i></a>
 										@if (tournament.startDate > DateTime.Now && !string.IsNullOrEmpty(tournament.onlineEntries))
 										{
-											<a href="@Umbraco.NiceUrl(tournament.Id)#Enter" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Enter</i></a>
+											<a href="@Umbraco.NiceUrl(tournament.Id)#Enter" itemprop="url" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Enter</i></a>
 										}
 									</div>
 									<span class="theme-accent-color-bg hover-bar"></span>
-									
 								</div>
 							</div>
 						</li>
@@ -273,13 +182,12 @@
 	</div>
 </section>
 
-
-<section class="silver-bg" id="ChessClubs">
+<section class="silver-bg" id="ChessClubs" itemscope itemtype="http://schema.org/Place">
 	<div class="section-inner">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center mb100">
-					<h2 class="section-heading">Our <span class="theme-accent-color">Chess</span> Clubs</h2>
+					<h2 class="section-heading" itemprop="headline">Our <span class="theme-accent-color">Chess</span> Clubs</h2>
 					<hr class="thin-hr">
 					<h3 class="section-subheading secondary-font">Join a club</h3>
 				</div>
@@ -294,21 +202,21 @@
 							@foreach (var club in clubs)
 							{
 								<li>
-									<div class="row hover-item">
+									<div class="row hover-item" itemscope itemtype="http://schema.org/Place">
 										<div class="col-xs-12">
 											<img src="@Umbraco.Media(clubContainer.clubBackground).Url" class="img-responsive smoothie" alt="">
 										</div>
 										<div class="col-xs-12 overlay-item-caption smoothie">
 											<div class="vertical-center">
-												<h3 class="smoothie"><a href="single-portfolio.html" title="view project">@club.Name</a></h3>
+												<h3 class="smoothie"><a href="#" title="@club.Name" itemprop="name">@club.Name</a></h3>
 												<ul class="smoothie list social-links wow fadeIn" data-wow-delay="0.2s">
 													<li style="text-align:left;" class="list-inline">
-														<a href="#"><i class="fa fa-user"></i>&nbsp;@club.president</a>
+														<a href="#" itemprop="accountablePerson"><i class="fa fa-user"></i>&nbsp;@club.president</a>
 													</li>
 													@if (string.IsNullOrEmpty(club.webAddress))
 													{
 														<li style="text-align:left;" class="list-inline">
-															<a href="#"><i class="fa fa-phone"></i>&nbsp;@club.presidentCell</a>
+															<a href="#" itemprop="telephone"><i class="fa fa-phone"></i>&nbsp;@club.presidentCell</a>
 														</li>
 														<li style="text-align:left;" class="list-inline">
 															<a href="mailto:@club.presidentEmail"><i class="fa fa-envelope-o "></i>&nbsp;@club.presidentEmail</a>
@@ -317,23 +225,27 @@
 													else
 													{
 														<li style="text-align:left;" class="list-inline">
-															<a href="@club.webAddress"><i class="fa fa-share-alt "></i>&nbsp;@club.webAddress</a>
+															<a href="@club.webAddress" itemprop="url"><i class="fa fa-share-alt "></i>&nbsp;@club.webAddress</a>
 														</li>
 													}
+
+													<li style="text-align:left;" class="list-inline">
+														<a href="#" itemprop="addressRegion"><i class="fa fa-location-arrow "></i>&nbsp;@club.locationVenue</a>
+													</li>
 												</ul>
 											</div>
 										</div>
 										<div class="col-xs-12 hover-item-caption smoothie">
 											<div class="vertical-center">
-												<h3 class="smoothie"><a href="single-portfolio.html" title="view project">@club.Name</a></h3>
+												<h3 class="smoothie"><a href="#" title="@club.Name" itemprop="name">@club.Name</a></h3>
 												<ul class="smoothie list social-links wow fadeIn" data-wow-delay="0.2s">
 													<li style="text-align:left;" class="list-inline">
-														<a href="#"><i class="fa fa-user"></i>&nbsp;@club.president</a>
+														<a href="#" itemprop="accountablePerson"><i class="fa fa-user"></i>&nbsp;@club.president</a>
 													</li>
 													@if (string.IsNullOrEmpty(club.webAddress))
 													{
 														<li style="text-align:left;" class="list-inline">
-															<a href="#"><i class="fa fa-phone"></i>&nbsp;@club.presidentCell</a>
+															<a href="#" itemprop="telephone"><i class="fa fa-phone"></i>&nbsp;@club.presidentCell</a>
 														</li>
 														<li style="text-align:left;" class="list-inline">
 															<a href="mailto:@club.presidentEmail"><i class="fa fa-envelope-o "></i>&nbsp;@club.presidentEmail</a>
@@ -342,49 +254,18 @@
 													else
 													{
 														<li style="text-align:left;" class="list-inline">
-															<a href="@club.webAddress"><i class="fa fa-share-alt "></i>&nbsp;@club.webAddress</a>
+															<a href="@club.webAddress" itemprop="url"><i class="fa fa-share-alt "></i>&nbsp;@club.webAddress</a>
 														</li>
 													}
+													<li style="text-align:left;" class="list-inline">
+														<a href="#" itemprop="addressRegion"><i class="fa fa-location-arrow "></i>@club.locationVenue</a>
+													</li>
 												</ul>
 											</div>
 										</div>
 										<span class="theme-accent-color-bg hover-bar"></span>
 									</div>
 								</li>
-								@*<li>
-									<div class="row hover-item">
-										<div class="col-xs-12">
-											<img src="@Umbraco.fallbackImage((string)club.logo,(string)Umbraco.Media(clubContainer.clubBackground).Url)" class="img-responsive smoothie" alt="">
-										</div>
-										<div class="col-xs-12 overlay-item-caption smoothie"></div>
-										<div class="col-xs-12 hover-item-caption smoothie">
-											<div class="vertical-center">
-												<h3 class="smoothie"><a href="single-portfolio.html" title="view project">@club.Name</a></h3>
-												<ul class="smoothie list social-links wow fadeIn" data-wow-delay="0.2s">
-													<li style="text-align:left;" class="list-inline">
-														<a href="#"><i class="fa fa-user"></i>&nbsp;@club.president</a>
-													</li>
-													@if (string.IsNullOrEmpty(club.webAddress))
-													{
-														<li style="text-align:left;" class="list-inline">
-															<a href="#"><i class="fa fa-phone"></i>&nbsp;@club.presidentCell</a>
-														</li>
-														<li style="text-align:left;" class="list-inline">
-															<a href="@club.presidentEmail"><i class="fa fa-envelope-o "></i>&nbsp;@club.presidentEmail</a>
-														</li>
-													}
-													else
-													{
-														<li style="text-align:left;" class="list-inline">
-															<a href="@club.webAddress"><i class="fa fa-share-alt "></i>&nbsp;@club.webAddress</a>
-														</li>
-													}
-												</ul>
-											</div>
-										</div>
-										<span class="theme-accent-color-bg hover-bar"></span>
-									</div>
-								</li>*@
 							}
 						</ul>
 					</div>
@@ -393,60 +274,12 @@
 		</div>
 	</div>
 </section>
-
-@*<section id="ChessClubs" class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media(clubContainer.topbanner).Url" data-speed="0.8">
+<section class="silver-bg" id="AwesomeTeam" itemprop="colleagues" itemscope itemtype="http://schema.org/Person" >
 	<div class="section-inner">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center mb100">
-					<h2 class="section-heading">Our <span class="theme-accent-color">Chess</span> Clubs</h2>
-					<hr class="thin-hr">
-					<h3 class="section-subheading secondary-font">Join a club</h3>
-				</div>
-			</div>
-		</div>
-		
-
-		<div class="overlay-layer mb30">
-			<div class="container">
-				<div class="row">
-					<ul class="owl-carousel-highlighted news-carousel fw-carousel list-unstyled" data-items="3" data-items-tablet="[768,2]" data-items-mobile="[479,1]">
-
-						@foreach (var club in clubs)
-						{
-							<li class="nopadding-lr hover-item">
-								<a href="@Umbraco.NiceUrl(club.Id)" title="@club.Name">
-									<img src="@Umbraco.fallbackImage((string)club.logo,(string)Umbraco.Media(clubContainer.clubBackground).Url)" class="img-responsive smoothie" alt="">
-								</a>
-								<div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
-									<div class="vertical-center smoothie">
-										
-										@if (@club.clubCheckList != "Is Name on Logo")
-										{
-											<h3><a href="@Umbraco.NiceUrl(club.Id)" title="@club.Name">@club.Name @club.clubCheckList</a></h3>
-										}
-									</div>
-								</div>
-								<div class="hover-item-caption smoothie">
-									<h3 class="vertical-center smoothie"><a href="@Umbraco.NiceUrl(club.Id)" class="smoothie btn btn-primary btn-white page-scroll" title="view club"><i class="fa fa-long-arrow-right"></i></a></h3>
-									<span class="theme-accent-color-bg hover-bar"></span>
-								</div>
-							</li>
-						}
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>*@
-
-
-<section class="silver-bg" id="AwesomeTeam">
-	<div class="section-inner">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center mb100">
-					<h2 class="section-heading">Our <span class="theme-accent-color">Chess</span> Enthusiasts</h2>
+					<h2 class="section-heading" itemprop="headline">Our <span class="theme-accent-color">Chess</span> Enthusiasts</h2>
 					<hr class="thin-hr">
 					<h3 class="section-subheading secondary-font">Dedicated to excellence</h3>
 				</div>
@@ -461,38 +294,38 @@
 							@foreach (var executive in executives)
 							{
 								<li>
-									<div class="row hover-item">
+									<div class="row hover-item" itemprop="colleague" itemscope itemtype="http://schema.org/Person">
 										<div class="col-xs-12">
-											<img src="@executive.picture" class="img-responsive smoothie" alt="">
+											<img src="@executive.picture" class="img-responsive smoothie" alt="" itemprop="thumbnailUrl">
 										</div>
 										<div class="col-xs-12 overlay-item-caption smoothie">
 											<div class="vertical-center">
-												<h3 class="smoothie">@executive.Name</h3>
+												<h3 class="smoothie" itemprop="name" >@executive.Name</h3>
 												<ul class="smoothie list social-links wow fadeIn" data-wow-delay="0.2s">
 													<li style="text-align:left;" class="list-inline">
-														<a href="#"><i class="fa "></i>Designation: @executive.designation</a>
+														<a href="#" itemprop="jobTitle"><i class="fa "></i>Designation: @executive.designation</a>
 													</li>
 													<li style="text-align:left;" class="list-inline">
-														<a href="#"><i class="fa "></i>Phone: @executive.telephone</a>
+														<a href="#" itemprop="telephone" ><i class="fa "></i>Phone: @executive.telephone</a>
 													</li>
 													<li style="text-align:left;" class="list-inline">
-														<a href="mailto:@executive.email"><i class="fa "></i>Email: @executive.email</a>
+														<a href="mailto:@executive.email" itemprop="email"><i class="fa "></i>Email: @executive.email</a>
 													</li>
 												</ul>
 											</div>
 										</div>
 										<div class="col-xs-12 hover-item-caption smoothie">
 											<div class="vertical-center">
-												<h3 class="smoothie">@executive.Name</h3>
+												<h3 class="smoothie" itemprop="name">@executive.Name</h3>
 												<ul class="smoothie list social-links wow fadeIn" data-wow-delay="0.2s">
 													<li style="text-align:left;" class="list-inline">
-														<a href="#"><i class="fa "></i>Designation: @executive.designation</a>
+														<a href="#" itemprop="jobTitle"><i class="fa "></i>Designation: @executive.designation</a>
 													</li>
 													<li style="text-align:left;" class="list-inline">
-														<a href="#"><i class="fa "></i>Phone: @executive.telephone</a>
+														<a href="#" itemprop="telephone"><i class="fa "></i>Phone: @executive.telephone</a>
 													</li>
 													<li style="text-align:left;" class="list-inline">
-														<a href="mailto:@executive.email"><i class="fa "></i>Email: @executive.email</a>
+														<a href="mailto:@executive.email" itemprop="email"><i class="fa "></i>Email: @executive.email</a>
 													</li>
 												</ul>
 											</div>
@@ -510,7 +343,7 @@
 </section>
 
 
-<section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media(sponsorContainer.banner).Url" data-speed="0.8">
+<section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media(sponsorContainer.banner).Url" data-speed="0.8"  itemscope itemtype="http://schema.org/Organization"> 
 	<div class="section-inner">
 		<div class="container">
 			<div class="row">
@@ -528,14 +361,14 @@
 						@foreach (var sponsor in sponsors)
 						{
 							<li>
-								<div class="row">
+								<div class="row" itemscope itemtype="http://schema.org/Organization">
 									<div class="col-xs-10 col-xs-offset-1 item-caption">
 										<div class="col-sm-2">
 											<a href="@sponsor.website" target="_blank"><img src="@sponsor.logo" class="img-responsive testimonial-author" alt="@sponsor.Name"></a>
 										</div>
 										<div class="col-sm-10">
-											<a href="@sponsor.website" target="_blank" ><h4>@sponsor.Name</h4></a>
-											<p>@sponsor.description</p>
+											<a href="@sponsor.website" target="_blank" itemprop="url"><h4 itemprop="name">@sponsor.Name</h4></a>
+											<p itemprop="description">@sponsor.description</p>
 										</div>
 									</div>
 								</div>
@@ -548,7 +381,7 @@
 	</div>
 </section>
 
-<section id="ContactUs" class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media(CurrentPage.Site().contactUsBackground).Url" data-speed="0.8">
+<section id="ContactUs" class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media(CurrentPage.Site().contactUsBackground).Url" data-speed="0.8" itemscope itemtype="http://schema.org/UserComments">
 	<div class="section-inner">
 		<div class="container">
 			<div class="row">

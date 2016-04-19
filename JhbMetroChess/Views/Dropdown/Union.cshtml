@@ -1,0 +1,6 @@
+﻿@inherits UmbracoViewPage<List<JhbMetro.Admin.Model.zUnion>>
+
+@foreach (var union in Model)
+{
+	<option value="@union.UnionCode">@union.UnionName</option>
+}

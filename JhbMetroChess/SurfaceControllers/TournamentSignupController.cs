@@ -14,35 +14,62 @@ namespace JhbMetroChess.SurfaceControllers
 	public class TournamentSignupController : SurfaceController
 	{
 		[ChildActionOnly]
-		public ActionResult TournamentForm(string tournamentId)
+		public ActionResult TournamentForm(int tournamentId)
 		{
-			return View(new TournamentEntry());
+			return View(new TournamentEntry() { TournamentId = tournamentId });
 		}
 
 
 		[HttpPost]
 		public string SubmitTournamentForm(TournamentEntry model)
 		{
-			model.DateofEntry = DateTime.Now;
-			if (ModelState.IsValid)
+			try
 			{
-				var mailTemplate = this.HttpContext.Server.MapPath("/MailTemplates/TournamentSignup.html");
-				var body = System.IO.File.ReadAllText(mailTemplate)
-					.Replace("{Tournament}", model.Tournament)
-					.Replace("{Surname}", model.Surname)
-					.Replace("{FirstName}", model.FirstName)
-					.Replace("{ChessaId}", model.ChessaId)
-					.Replace("{DateOfBirth}", model.DateOfBirth)
-					.Replace("{Gender}", model.Gender)
-					.Replace("{EmailAddress}", model.EmailAddress)
-					.Replace("{PhoneNumber}", model.PhoneNumber)
-					.Replace("{Club}", model.Club)
-					.Replace("{Section}", model.Section)
-					.Replace("{Note}", model.Note)
-					.Replace("{DateofEntry}", model.DateofEntry.ToString());
-				umbraco.library.SendMail(ConfigurationManager.AppSettings["FromEmail"], ConfigurationManager.AppSettings["TournamnetSignupMailReceiver"], $"New Entry for Tournament: {model.Tournament}", body, true);
+				if (ModelState.IsValid)
+				{
 
-				return "Thank you for your entry. ";
+					JhbMetro.Admin.Model.Model db = new JhbMetro.Admin.Model.Model();
+					db.zTourEntries.Add(new JhbMetro.Admin.Model.zTourEntry() {
+						ChessaID = model.ChessaId,
+						entryComments = model.EntryComment,
+						PlayerBirthdate = model.DateOfBirth,
+						PlayerClub = model.Club,
+						PlayerClubOther = model.ClubOther,
+						PlayerEmail = model.Email,
+						PlayerGender = model.Gender,
+						PlayerName = model.Name,
+						PlayerPhone = model.PhoneNumber,
+						PlayerSurname = model.Surname,
+						PlayerUnion = model.Union,
+						SectionID = model.SectionId,
+						TourID = model.TournamentId,
+						RegisterDate = DateTime.Now.ToString("ddMMMHH:mm"),
+					});
+					db.SaveChanges();
+
+				
+					var mailTemplate = this.HttpContext.Server.MapPath("/MailTemplates/TournamentSignup.html");
+					var body = System.IO.File.ReadAllText(mailTemplate)
+						.Replace("{Tournament}", model.TournamentId.ToString())
+						.Replace("{Surname}", model.Surname)
+						.Replace("{FirstName}", model.Name)
+						.Replace("{ChessaId}", model.ChessaId)
+						.Replace("{DateOfBirth}", model.DateOfBirth)
+						.Replace("{Gender}", model.Gender)
+						.Replace("{EmailAddress}", model.Email)
+						.Replace("{PhoneNumber}", model.PhoneNumber)
+						.Replace("{Club}", model.Club)
+						.Replace("{Section}", model.SectionId.ToString())
+						.Replace("{Note}", model.EntryComment)
+						.Replace("{DateofEntry}", DateTime.Now.ToString("dd MMM HH:mm"));
+					umbraco.library.SendMail(ConfigurationManager.AppSettings["FromEmail"], ConfigurationManager.AppSettings["TournamnetSignupMailReceiver"], $"New Entry for Tournament: {model.TournamentId.ToString()}", body, true);
+
+					return "Thank you for your entry. ";
+				}
+			}
+			catch(Exception ex)
+			{
+
 			}
 			return "please complete all required fields and then submit again";
 		}

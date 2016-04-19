@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 mt30 text-center wow fadeIn" data-wow-delay="0.2s">
-                    <h2 class="section-heading"><span class="theme-accent-color">Chess</span> Tournaments</h2>
+                    <h2 class="section-heading" itemprop="headline"><span class="theme-accent-color">Chess</span> Tournaments</h2>
                 </div>
             </div>
         </div>
@@ -20,25 +20,25 @@
 </section>
 
 <section>
-    <div class="section-inner">
+    <div class="section-inner" itemprop="events" itemscope itemtype="http://schema.org/Event">
         <div class="container">
             <div class="wow fadeIn" data-wow-delay="0.2s">
                 <ul class="portfolio-filter mb30 text-center list-inline wow fadeIn" data-wow-delay="0.2s">
                     <li><a class="btn btn-primary btn-transparent active" href="#" data-filter="*">All</a></li>
                     <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".upcoming">upcoming</a></li>
-					<li><a class="btn btn-primary btn-transparent" href="#" data-filter=".inprogress">in progress</a></li>
+					@*<li><a class="btn btn-primary btn-transparent" href="#" data-filter=".inprogress">in progress</a></li>*@
 					<li><a class="btn btn-primary btn-transparent" href="#" data-filter=".previous">Previous</a></li>						
                 </ul>
                 <ul class="portfolio-items nopadding-lr isotope list-unstyled">
 				@foreach (var tournament in tournaments)
 				{
 					<li class="col-sm-4 col-xs-6 portfolio-item @Umbraco.TournamentStatus((DateTime)tournament.startDate,(DateTime)tournament.endDate) isotope-item">
-						<div class="col-xs-12 nopadding-lr hover-item">
+						<div class="col-xs-12 nopadding-lr hover-item" itemprop="event" itemscope itemtype="http://schema.org/Event">
 							<img src="@Umbraco.Media(tournamentContainer.tournamentBackground).Url" class="img-responsive smoothie" alt="">
 							<div class="overlay-item-caption smoothie wow fadeIn" data-wow-delay="0.2s">
 								<div class="vertical-center smoothie">
-									<strong class="heading-font"><span class="theme-accent-color-bg">@tournament.startDate.ToString("d MMM yyyy")</span></strong>
-									<h3><a href="single-post.html" title="view project">@tournament.Name</a></h3>
+									<strong class="heading-font"><span class="theme-accent-color-bg" itemprop="startDate">@tournament.startDate.ToString("d MMM yyyy")</span></strong>
+									<h3><a href="#" title="view project" itemprop="name">@tournament.Name</a></h3>
 								</div>
 							</div>
 							<div class="hover-item-caption smoothie">
@@ -47,15 +47,15 @@
 									{
 									<a href="@tournament.tournamentDetails" target="_blank"class="smoothie btn btn-primary btn-white page-scroll"><i class="fa fa-long-arrow-down"></i></a>
 									}
-									<a href="@Umbraco.NiceUrl(tournament.Id)" target="_blank" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Details</i></a>
+									<a href="@Umbraco.NiceUrl(tournament.Id)" itemprop="url" target="_blank" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Details</i></a>
 									
 									@if (tournament.startDate > DateTime.Now && !string.IsNullOrEmpty(tournament.onlineEntries))
 									{
-										<a href="@Umbraco.NiceUrl(tournament.Id)#Enter" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Enter</i></a>
+										<a href="@Umbraco.NiceUrl(tournament.Id)#Enter" itemprop="url" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Enter</i></a>
 									}
 									@if (!string.IsNullOrEmpty(tournament.resultsLink))
 									{
-										<a href="@tournament.resultsLink" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Results</i></a>
+										<a href="@tournament.resultsLink"  itemprop="url" class="smoothie btn btn-primary btn-white page-scroll"><i class="fa ">Results</i></a>
 									}
 								</div>
 								<span class="theme-accent-color-bg hover-bar"></span>

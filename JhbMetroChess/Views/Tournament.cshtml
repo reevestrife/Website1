@@ -13,7 +13,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 mt30 text-center wow fadeIn" data-wow-delay="0.2s">
-					<h2 class="section-heading">@tournament.Name</h2>
+					<h2 class="section-heading" itemprop="headline">@tournament.Name</h2>
 					<h3 class="section-subheading text-muted secondary-font">Chess Tournament</h3>
 				</div>
 			</div>
@@ -22,30 +22,30 @@
 </section>
 
 <section>
-	<div class="section-inner">
+	<div class="section-inner" itemprop="event" itemscope itemtype="http://schema.org/Event">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 blog-item mb100 wow fadeIn" data-wow-delay="0.2s">
 					<div class="row">
 						<div class="col-xs-2">
-							<div class="post-date heading-font">
+							<div class="post-date heading-font" itemprop="startDate">
 								<span class="the-date">@tournament.startDate.ToString("dd")</span>
 								<span class="the-month">@tournament.startDate.ToString("MMM"), @tournament.startDate.ToString("yyyy")</span>
 							</div>
 						</div>
 						<div class="col-xs-10">
-							<h2 class="post-title">@tournament.Name</h2>
+							<h2 class="post-title" itemprop="name">@tournament.Name</h2>
 							<div class="item-metas text-muted mb30">
-								<span class="meta-item"><i class="pe-icon pe-7s-folder"></i> VENUE <span class="secondary-font">@tournament.venue </span></span>
-								<span class="meta-item"><i class="pe-icon pe-7s-ticket"></i> ORGANISER <span class="secondary-font">@tournament.organiser</span></span>
-								<span class="meta-item"><i class="pe-icon pe-7s-user"></i>CLUB <span class="secondary-font">@club.Name</span></span>
-								<span class="meta-item"><i class="pe-icon pe-7s-comment"></i> RATING <span class="secondary-font">@tournament.rated</span></span>
-								<span class="meta-item"><i class="pe-icon pe-7s-comment"></i> CONTACT <span class="secondary-font">@tournament.contact</span></span>
+								<span class="meta-item"><i class="pe-icon pe-7s-folder"></i> VENUE <span class="secondary-font" itemprop="addressCountry">@tournament.venue </span></span>
+								<span class="meta-item"><i class="pe-icon pe-7s-ticket"></i> ORGANISER <span class="secondary-font" itemprop="accountablePerson">@tournament.organiser</span></span>
+								<span class="meta-item"><i class="pe-icon pe-7s-user"></i>CLUB <span class="secondary-font" itemprop="brand" >@club.Name</span></span>
+								<span class="meta-item"><i class="pe-icon pe-7s-comment"></i> RATING <span class="secondary-font" itemprop="worksfor" >@tournament.rated</span></span>
+								<span class="meta-item"><i class="pe-icon pe-7s-comment"></i> CONTACT <span class="secondary-font" itemprop="telephone">@tournament.contact</span></span>
 							</div>
 							@tournament.description
 							@if (!string.IsNullOrEmpty(tournament.tournamentDetails.ToString()))
 							{
-								<a class="btn btn-primary mt30" target="_blank" href="@tournament.tournamentDetails"><i class="fa fa-long-arrow-down"></i></a>
+								<a class="btn btn-primary mt30" target="_blank" itemprop="description" href="@tournament.tournamentDetails"><i class="fa fa-long-arrow-down"></i></a>
 							}
 							@if (tournament.startDate > DateTime.Now && !string.IsNullOrEmpty(tournament.onlineEntries))
 							{
@@ -67,17 +67,58 @@
 		@if (!string.IsNullOrEmpty(tournament.venueGpsLattitude) && !string.IsNullOrEmpty(tournament.venueGpsLongitude))
 		{
 		<div id="mapwrapper"></div>
+		<div style="display:none;">
+			<span itemprop="latitude">tournament.venueGpsLattitude</span>
+			<span itemprop="longtitude">tournament.venueGpsLongitude</span>
+		</div>
 		}
 	</div>
 </section>
 
 @if (tournament.startDate > DateTime.Now && !string.IsNullOrEmpty(tournament.onlineEntries))
 {
-	@Html.Action("TournamentForm", "TournamentSignup",
-	new
-	{
-		tournamentId = tournament.Id.ToString()
-	})
+	<section id="Enter" class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="/i.jpg" data-speed="0.8" itemscope>
+		<div class="section-inner">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div id="message"></div>
+						<form method="post" action="/umbraco/surface/TournamentSignup/SubmitTournamentForm" id="tournamentEntryForm" class="main-contact-form wow fadeIn" data-wow-delay="0.2s" enctype="multipart/form-data">
+							<input type="text" style="display:none"  name="TournamentId" id="TournamentId"  value="@tournament.dbTournamentId" />
+							<select id="SectionId" name="SectionId" class="form-control col-md-4" placeholder="Section" >
+								<option value="-">Section</option>
+								@Html.Action("TournamentSection", "Dropdown", new { tournamentId = Convert.ToInt32(tournament.dbTournamentId) })
+							</select>
+							<input type="text" class="form-control col-md-4" name="Name" id="Name" placeholder="Name *" required data-validation-required-message="Please enter your name." />
+							<input type="text" class="form-control col-md-4" name="Surname" id="Surname" placeholder="Surname *" required data-validation-required-message="Please enter your surname." />
+							<input type="text" class="form-control col-md-4" name="ChessaId" id="ChessaId" placeholder="CHESSA ID*" required data-validation-required-message="Please enter your CHESSA ID." />
+							<input type="text" class="form-control col-md-4 bootstrapDatePicker" name="DateOfBirth" id="DateOfBirth" placeholder="Date of Birth *" required data-validation-required-message="Please enter your Date of Birth." />
+							<select id="Union" name="Union" class="form-control col-md-4">
+								<option value="-">Please Choose your Union</option>
+								@Html.Action("Union", "Dropdown")
+							</select>
+							<select id="Club" name="Club" class="form-control col-md-4">
+								<option value="-">Please Choose your Club</option>
+								@Html.Action("Club", "Dropdown")
+							</select>
+							<input type="text" class="form-control col-md-4" name="ClubOther" id="ClubOther" placeholder="Club Other" />
+							<select id="Gender" name="Gender" class="form-control col-md-4" placeholder="Gender *" required data-validation-required-message="Please select gender.">
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+							</select>
+							<input type="email" class="form-control col-md-4" name="Email" id="Email" placeholder="Email Address *" required data-validation-required-message="Please enter your Email Address" />
+							<input type="text" class="form-control col-md-4" name="PhoneNumber" id="PhoneNumber" placeholder="Phone Number *" required data-validation-required-message="Please enter your Phone Number." />
+							
+							@*<input type="text" class="form-control col-md-4" name="Section" id="Section" placeholder="Section*" required data-validation-required-message="Please enter your Section." />*@
+							<textarea name="EntryComment" id="EntryComment" class="form-control" placeholder="Additional notes"></textarea>
+							<input class="btn btn-primary mt30 pull-right" type="submit" name="submit" value="Submit" />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 }
 
 
@@ -123,25 +164,15 @@
 		$("#tournamentEntryForm").slideUp(750, function () {
 			$('#tournamentEntryForm').hide();
 			$('#submit').attr('disabled', 'disabled');
-			$.post(action, {
-				FirstName: $('#FirstName').val(),
-				Surname: $('#Surname').val(),
-				ChessaId: $('#ChessaId').val(),
-				DateOfBirth: $('#DateOfBirth').val(),
-				Gender: $('#Gender').val(),
-				EmailAddress: $('#EmailAddress').val(),
-				PhoneNumber: $('#PhoneNumber').val(),
-				Club: $('#Club').val(),
-				Section: $('#Section').val(),
-				Note: $('#Note').val()
-			},
+			$.post(action,
+				$(this).serialize(),
 				function (data) {
-			  	debugger;
-			  	document.getElementById('message').innerHTML = data;
-			  	$('#message').slideDown('slow');
-			  	$('#submit').removeAttr('disabled');
-			  	if (data.match('success') != null) $('#tournamentEntryForm').slideUp('slow');
-			  	$(window).trigger('resize');
+//			  		debugger;
+			  		document.getElementById('message').innerHTML = data;
+			  		$('#message').slideDown('slow');
+			  		$('#submit').removeAttr('disabled');
+			  		if (data.match('success') != null) $('#tournamentEntryForm').slideUp('slow');
+			  		$(window).trigger('resize');
 				}
 			);
 		});

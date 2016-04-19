@@ -11,7 +11,16 @@
 /*  DOCUMENT READY
 /*-----------------------------------------------------------------------------------*/
 $(document).ready(function(){
-    'use strict';
+	'use strict';
+
+
+	//DatePicker
+
+	$('.bootstrapDatePicker').datepicker({
+		format: "yyyy/mm/dd",
+		viewMode:2 //2 = years
+	});
+
     // OWL CAROUSEL //
     $('.owl-carousel').owlCarousel({
       navigation: false,

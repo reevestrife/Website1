@@ -46,5 +46,14 @@ namespace JhbMetroChess.Extensions
 			}
 			return "/";
 		}
+
+		public static string SetTargeBlank(this UmbracoHelper umbraco, bool setTargetBlank)
+		{
+			if (setTargetBlank == true)
+			{
+				return "target=\"_blank\"";
+			}
+			else return "";
+		}
 	}
 }

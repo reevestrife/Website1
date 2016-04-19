@@ -20,20 +20,41 @@ namespace JhbMetroChess.SurfaceControllers
 		[HttpPost]
 		public string PostMemberSignup(MemberSignup model)
 		{
+
+			JhbMetro.Admin.Model.Model db = new JhbMetro.Admin.Model.Model();
+
+			var sss = db.zMembers.Add(new JhbMetro.Admin.Model.zMember() {
+				MemberBirthdate	= model.DateOfBirth,	
+				MemberChessaID = model.ChessaId,
+				MemberClub = model.Club,
+				MemberEmail = model.Email,
+				MemberGender = model.Gender,
+				MemberName = model.Name,
+				MemberNamePref = model.PreferedName,
+				MemberNotes = model.Note,
+				MemberParent = model.ParentName,
+				MemberParentEmail = model.ParentEmail,
+				MemberParentEmployer = model.ParentEmployer,
+				MemberParentPhone = model.ParentPhone,
+				MemberPhone = model.PhoneNumber,
+				MemberSurname = model.Surname
+			});
+			db.SaveChanges();
+
 			var mailTemplate = this.HttpContext.Server.MapPath("/MailTemplates/MemberSignup.html");
 			var body = System.IO.File.ReadAllText(mailTemplate)
 				.Replace("{Surname}", model.Surname)
-				.Replace("{FirstName}", model.FirstName)
+				.Replace("{FirstName}", model.Name)
 				.Replace("{ChessaId}", model.ChessaId)
-				.Replace("{DateOfBirth}", model.DateOfBirth)
+				.Replace("{DateOfBirth}", model.DateOfBirth.ToString("yyy-MM-dd"))
 				.Replace("{Gender}", model.Gender)
-				.Replace("{EmailAddress}", model.EmailAddress)
+				.Replace("{EmailAddress}", model.Email)
 				.Replace("{PhoneNumber}", model.PhoneNumber)
 				.Replace("{Club}", model.Club)
-				.Replace("{Section}", model.Section)
+				//.Replace("{Section}", model.Sec)
 				.Replace("{Note}", model.Note)
-				.Replace("{DateofEntry}", model.DateofEntry.ToString());
-			umbraco.library.SendMail(ConfigurationManager.AppSettings["FromEmail"], ConfigurationManager.AppSettings["MemberSignupMailReceiver"], $"New Membership Signup: {model.FirstName} {model.Surname}", body, true);
+				.Replace("{DateofEntry}", DateTime.Now.ToString());
+			umbraco.library.SendMail(ConfigurationManager.AppSettings["FromEmail"], ConfigurationManager.AppSettings["MemberSignupMailReceiver"], $"New Membership Signup: {model.Name} {model.Surname}", body, true);
 
 			return "Signup Complete";
 		}

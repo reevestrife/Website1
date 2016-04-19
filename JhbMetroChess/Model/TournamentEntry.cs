@@ -7,17 +7,18 @@ namespace JhbMetroChess.Model
 {
 	public class TournamentEntry
 	{
-		public string Tournament { get; set; }
-		public string Surname { get; set; }
-		public string FirstName { get; set; }
+		public int TournamentId { get; set; }
+		public int SectionId { get; set; }
 		public string ChessaId { get; set; }
-		public string DateOfBirth { get; set; }
-		public string Gender { get; set; }
-		public string EmailAddress { get; set; }
-		public string PhoneNumber { get; set; }
+		public string Name { get; set; }
+		public string Surname { get; set; }
+		public string Union { get; set; }
 		public string Club { get; set; }
-		public string Section { get; set; }
-		public string Note { get; set; }
-		public DateTime DateofEntry { get; set; }
+		public string ClubOther { get; set; }
+		public string Gender { get; set; }
+		public string DateOfBirth { get; set; }
+		public string PhoneNumber { get; set; }
+		public string Email { get; set; }
+		public string EntryComment { get; set; }
 	}
 }

@@ -6,6 +6,7 @@
 				<div class="col-md-12">
 					<div id="message"></div>
 					<form method="post" action="/umbraco/surface/TournamentSignup/SubmitTournamentForm" id="tournamentEntryForm" class="main-contact-form wow fadeIn" data-wow-delay="0.2s" enctype="multipart/form-data">
+						<input type="text" class="form-control col-md-4" name="Surname" id="Surname" placeholder="Surname *" value="" />
 						<input type="text" class="form-control col-md-4" name="FirstName" id="FirstName" placeholder="First Name *" required data-validation-required-message="Please enter your first name." />
 						<input type="text" class="form-control col-md-4" name="Surname" id="Surname" placeholder="Surname *" required data-validation-required-message="Please enter your surname." />
 						<input type="text" class="form-control col-md-4" name="ChessaId" id="ChessaId" placeholder="CHESSA ID*"   required data-validation-required-message="Please enter your CHESSA ID." />
@@ -15,7 +16,7 @@
 						<input type="text" class="form-control col-md-4" name="PhoneNumber" id="PhoneNumber" placeholder="Phone Number *" required data-validation-required-message="Please enter your Phone Number." />
 						<input type="text" class="form-control col-md-4" name="Club" id="Club" placeholder="Club *" required data-validation-required-message="Please enter your Club." />
 						@*<input type="text" class="form-control col-md-4" name="Section" id="Section" placeholder="Section*" required data-validation-required-message="Please enter your Section." />*@
-						<textarea name="Note" class="form-control" id="Note" placeholder="Aditional notes"></textarea>
+						<textarea name="Note" class="form-control" id="Note" placeholder="Additional notes"></textarea>
 						<input class="btn btn-primary mt30 pull-right" type="submit" name="submit" value="Submit" />
 					</form>
 				</div>

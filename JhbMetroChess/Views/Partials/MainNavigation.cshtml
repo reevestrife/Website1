@@ -2,6 +2,10 @@
 @using JhbMetroChess.Extensions
 @{ 
 	var home = CurrentPage.Site();
+
+	//var navigation = CurrentPage.Site().Children.Where("DocumentTypeAlias == @0", "Navigation").First();
+	//var mainMenus = navigation.Children;
+
 }
 			<nav class="navbar navbar-default navbar-fixed-top fadeInDown" data-wow-delay="0.2s">
 			<div class="container-fluid">
@@ -35,8 +39,8 @@
 								<li><a href="@Umbraco.HomeIfNotHome((string)CurrentPage.DocumentTypeAlias)#AboutUs" class="page-scroll">About Us</a></li>
 								<li><a href="@Umbraco.HomeIfNotHome((string)CurrentPage.DocumentTypeAlias)#AwesomeTeam" class="page-scroll" >Our Team</a></li>
 								<li><a href="@home.constitution" target="_blank">Constitution</a></li>
-								<li><a href="@home.selection" target="_blank">Selection (2015)</a></li>
-								<li><a href="/banking-details/">Banking Details</a></li>
+								
+								<li><a href="/banking-details/" >Banking Details</a></li>
 								
 								<li><a href="@Umbraco.HomeIfNotHome((string)CurrentPage.DocumentTypeAlias)#ContactUs" class="page-scroll" >Contact Us</a></li>
 							</ul>
@@ -45,9 +49,10 @@
 							<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Members<span class="pe-7s-angle-down"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="/member-signup/">Registration</a></li>
-								<li><a href="#">Rankings (coming soon)</a></li>
+								<li><a href="/rankings/">Rankings</a></li>
 								<li><a href="#">Members List (coming soon)</a></li>
 								<li><a href="/fee-structure/" class="page-scroll">Fee Structure @DateTime.Now.Year</a></li>
+								<li><a href="/media/1122/jmc-player-selection-criteria-2016-v1.pdf" target="_blank" class="page-scroll">Selection Criteria @DateTime.Now.Year</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">

@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Master.cshtml";
+}
+@section title {@CurrentPage.pageTitle}
+<section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media((string)CurrentPage.primarybanner).Url" data-speed="0.8">
+    <div class="section-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mt30 text-center wow fadeIn" data-wow-delay="0.2s">
+                    <div id="bannertext">
+						<h2 class="section-heading">@CurrentPage.Name</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="ContactUs" class="opaqued light-opaqued parallax" data-parallax="scroll" data-image-src="@Umbraco.Media((string)CurrentPage.secondarybanner).Url" data-speed="0.8">
+	<div class="section-inner">
+		<div class="container">
+			<div class="row">
+				    <iframe src="@CurrentPage.iframeUrl" frameborder="0" style="display:block; margin:0 auto; width: 100%; height:480px"></iframe>
+			</div>
+		</div>
+	</div>
+</section>

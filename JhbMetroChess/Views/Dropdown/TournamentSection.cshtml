@@ -1,0 +1,6 @@
+﻿@inherits UmbracoViewPage<List<JhbMetro.Admin.Model.zTourSection>>
+
+@foreach (var tournamentSection in Model)
+{
+	<option value="@tournamentSection.SectionID" >@tournamentSection.SectionName</option>
+}
