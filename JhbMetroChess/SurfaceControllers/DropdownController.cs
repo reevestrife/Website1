@@ -15,7 +15,7 @@ namespace JhbMetroChess.SurfaceControllers
 		[ChildActionOnly]
 		public ActionResult TournamentSection(int tournamentId)
 		{
-			return View(new JhbMetro.Admin.Model.Model().zTourSections.ToList());
+			return View(new JhbMetro.Admin.Model.Model().zTourSections.Where(p=> p.TourID == tournamentId).ToList());
 		}
 
 		[ChildActionOnly]

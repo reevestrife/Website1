@@ -14,15 +14,18 @@ namespace JhbMetroChess.SurfaceControllers
 		[HttpPost]
 		public string PostContactUs(ContactUs model)
 		{
-			var mailTemplate = this.HttpContext.Server.MapPath("/MailTemplates/ContactUs.html");
-			var body = System.IO.File.ReadAllText(mailTemplate)
-				.Replace("{Name}", model.Name)
-				.Replace("{Email}", model.Email)
-				.Replace("{Phone}", model.Phone)
-				.Replace("{Comments}", model.Comments);
-						
-			umbraco.library.SendMail(ConfigurationManager.AppSettings["FromEmail"], ConfigurationManager.AppSettings["ContactUsMailReceiver"], $"New Contact Us Message From: {model.Name}", body, true);
+			if (!(model.Name.ToLower().Contains("http") && model.Phone.ToLower().Contains("http"))) //spam filter
+			{
+				var mailTemplate = this.HttpContext.Server.MapPath("/MailTemplates/ContactUs.html");
+				var body = System.IO.File.ReadAllText(mailTemplate)
+					.Replace("{Name}", model.Name)
+					.Replace("{Email}", model.Email)
+					.Replace("{Phone}", model.Phone)
+					.Replace("{Comments}", model.Comments);
 
+				umbraco.library.SendMail(ConfigurationManager.AppSettings["FromEmail"],
+					ConfigurationManager.AppSettings["ContactUsMailReceiver"], $"New Contact Us Message From: {model.Name}", body, true);
+			}
 			return "Thank you for your message, we will be in touch.";
 		}
 	}

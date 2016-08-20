@@ -2,6 +2,9 @@
 @using JhbMetroChess.Extensions
 @{ 
 	var home = CurrentPage.Site();
+	var navigation = home.Children.Where("DocumentTypeAlias == @0", "Navigation").First();
+	var mainNavigationMenus = navigation.Children;
+
 
 	//var navigation = CurrentPage.Site().Children.Where("DocumentTypeAlias == @0", "Navigation").First();
 	//var mainMenus = navigation.Children;
@@ -30,52 +33,81 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="main-navigation">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a href="/">Home</a>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" >About Us<span class="pe-7s-angle-down"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="@Umbraco.HomeIfNotHome((string)CurrentPage.DocumentTypeAlias)#AboutUs" class="page-scroll">About Us</a></li>
-								<li><a href="@Umbraco.HomeIfNotHome((string)CurrentPage.DocumentTypeAlias)#AwesomeTeam" class="page-scroll" >Our Team</a></li>
-								<li><a href="@home.constitution" target="_blank">Constitution</a></li>
-								
-								<li><a href="/banking-details/" >Banking Details</a></li>
-								
-								<li><a href="@Umbraco.HomeIfNotHome((string)CurrentPage.DocumentTypeAlias)#ContactUs" class="page-scroll" >Contact Us</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Members<span class="pe-7s-angle-down"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="/member-signup/">Registration</a></li>
-								<li><a href="/rankings/">Rankings</a></li>
-								<li><a href="#">Members List (coming soon)</a></li>
-								<li><a href="/fee-structure/" class="page-scroll">Fee Structure @DateTime.Now.Year</a></li>
-								<li><a href="/media/1122/jmc-player-selection-criteria-2016-v1.pdf" target="_blank" class="page-scroll">Selection Criteria @DateTime.Now.Year</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Tournaments<span class="pe-7s-angle-down"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="/tournaments">Tournaments</a></li>
-								<li><a href="@home.tournamentCalendarPdf" target="_blank" >@DateTime.Now.Year Calendar</a></li>
-							</ul>
-						</li>
-						
-						<li class="dropdown">
-							<a href="@Umbraco.HomeIfNotHome((string)CurrentPage.DocumentTypeAlias)#ChessClubs" class="page-scroll" >Clubs</a>
-						</li>
-						@*<li class="dropdown">
-							<a href="/news/">News</a>
-						</li>*@
-						@*<li><a href="#search"><i class="pe-7s-search"></i></a></li>*@
+						@foreach (var mainMenuItem in mainNavigationMenus)
+						{
+							if (mainMenuItem.Name == "About Us")
+							{
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">About Us<span class="pe-7s-angle-down"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="@Umbraco.HomeIfNotHome((string)CurrentPage.DocumentTypeAlias)#AboutUs" class="page-scroll">About Us</a></li>
+										<li><a href="@Umbraco.HomeIfNotHome((string)CurrentPage.DocumentTypeAlias)#AwesomeTeam" class="page-scroll">Our Team</a></li>
+										<li><a href="@home.constitution" target="_blank">Constitution</a></li>
+										@*<li><a href="/banking-details/">Banking Details</a></li>*@
+										<li><a href="@Umbraco.HomeIfNotHome((string)CurrentPage.DocumentTypeAlias)#ContactUs" class="page-scroll">Contact Us</a></li>
+										@foreach (var subMenuItem in mainMenuItem.Children)
+										{
+											<li><a href="@subMenuItem.url">@subMenuItem.Name</a></li>
+										}
+									</ul>
+								</li>
+							}
+							else if (mainMenuItem.Name == "Members")
+							{
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Members<span class="pe-7s-angle-down"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										@foreach (var subMenuItem in mainMenuItem.Children)
+										{
+											<li><a href="@subMenuItem.url">@subMenuItem.Name</a></li>
+										}
+									</ul>
+								</li>
+							}
+							else if (mainMenuItem.Name == "Tournaments")
+							{
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Tournaments<span class="pe-7s-angle-down"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										@*<li><a href="/tournaments">Tournaments</a></li>*@
+										@foreach (var subMenuItem in mainMenuItem.Children)
+										{
+											<li><a href="@subMenuItem.url">@subMenuItem.Name</a></li>
+										}
+										<li><a href="@home.tournamentCalendarPdf" target="_blank">@DateTime.Now.Year Calendar</a></li>
+									</ul>
+								</li>
+							}
+							else if (mainMenuItem.Name == "Clubs")
+							{
+								<li class="dropdown">
+									<a href="@Umbraco.HomeIfNotHome((string)CurrentPage.DocumentTypeAlias)#ChessClubs" class="page-scroll">Clubs</a>
+									<ul class="dropdown-menu" role="menu">
+										@foreach (var subMenuItem in mainMenuItem.Children)
+										{
+											<li><a href="@subMenuItem.url">@subMenuItem.Name</a></li>
+										}
+									</ul>
+								</li>
+							}
+							else
+							{
+								bool hasChildren = mainMenuItem.ChildrenAsList.Any();
 
+								<li class="dropdown">
+									<a href="@(string.IsNullOrEmpty(mainMenuItem.url)? mainMenuItem.url :"#")" class="@((hasChildren) ?"dropdown-toggle" : "")" data-hover="@((hasChildren) ?"dropdown" : "")" data-toggle="@((hasChildren) ?"dropdown" : "")">@mainMenuItem.Name<span class="@((hasChildren) ? "pe-7s-angle-down" : "")"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										@foreach (var subMenuItem in mainMenuItem.Children)
+										{
+											<li><a href="@subMenuItem.url">@subMenuItem.Name</a></li>
+										}
+									</ul>
+								</li>
+							}
+						}
 					</ul>
-
 				</div>
 				<!-- /.navbar-collapse -->
-
 			</div>
 			<!-- /.container-fluid -->
 		</nav>

@@ -7,20 +7,20 @@
 	var templateAssets = @Url.Content("~/assets");
 	var home = CurrentPage.Site();
 
-	var tournamentContainer = CurrentPage.Site().Children.Where("DocumentTypeAlias == @0", "Tournamentcontainer").First();
+	var tournamentContainer = home.Children.Where("DocumentTypeAlias == @0", "Tournamentcontainer").First();
 	var upcomingTournaments = tournamentContainer.Children.Where("DocumentTypeAlias == @0 && startDate > @1", "Tournament", DateTime.Now).Take(6).OrderBy("startDate");
 
 
-	var executivecontainer = CurrentPage.Site().Children.Where("DocumentTypeAlias == @0", "Executivecontainer").First();
+	var executivecontainer = home.Children.Where("DocumentTypeAlias == @0", "Executivecontainer").First();
 	var executives = executivecontainer.Children.Where("DocumentTypeAlias == @0", "Executive");
 
-	var clubContainer = CurrentPage.Site().Children.Where("DocumentTypeAlias == @0", "Clubcontainer").First();
+	var clubContainer = home.Children.Where("DocumentTypeAlias == @0", "Clubcontainer").First();
 	var clubs = clubContainer.Children.Where("DocumentTypeAlias == @0", "Club");
 
-	var sponsorContainer = CurrentPage.Site().Children.Where("DocumentTypeAlias == @0", "Sponsorcontainer").First();
+	var sponsorContainer = home.Children.Where("DocumentTypeAlias == @0", "Sponsorcontainer").First();
 	var sponsors = sponsorContainer.Children.Where("DocumentTypeAlias == @0", "Sponsor");
 
-	var affiliateContainer = CurrentPage.Site().Children.Where("DocumentTypeAlias == @0", "Affiliatecontainer").First();
+	var affiliateContainer = home.Children.Where("DocumentTypeAlias == @0", "Affiliatecontainer").First();
 	var affilates = affiliateContainer.Children.Where("DocumentTypeAlias == @0", "Affiliate");
 
 }
