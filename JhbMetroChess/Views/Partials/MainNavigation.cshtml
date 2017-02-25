@@ -95,7 +95,7 @@
 								bool hasChildren = mainMenuItem.ChildrenAsList.Any();
 
 								<li class="dropdown">
-									<a href="@(string.IsNullOrEmpty(mainMenuItem.url)? mainMenuItem.url :"#")" class="@((hasChildren) ?"dropdown-toggle" : "")" data-hover="@((hasChildren) ?"dropdown" : "")" data-toggle="@((hasChildren) ?"dropdown" : "")">@mainMenuItem.Name<span class="@((hasChildren) ? "pe-7s-angle-down" : "")"></span></a>
+									<a href="@(string.IsNullOrEmpty(mainMenuItem.url)? "#" : mainMenuItem.url )" class="@((hasChildren) ?"dropdown-toggle" : "")" data-hover="@((hasChildren) ?"dropdown" : "")" data-toggle="@((hasChildren) ?"dropdown" : "")">@mainMenuItem.Name<span class="@((hasChildren) ? "pe-7s-angle-down" : "")"></span></a>
 									<ul class="dropdown-menu" role="menu">
 										@foreach (var subMenuItem in mainMenuItem.Children)
 										{

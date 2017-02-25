@@ -1,9 +1,9 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using JhbMetroChess.Extensions
 @{
-	
 
-		Layout = "Master.cshtml";
+
+	Layout = "Master.cshtml";
 	var templateAssets = @Url.Content("~/assets");
 	var home = CurrentPage.Site();
 
@@ -22,6 +22,8 @@
 
 	var affiliateContainer = home.Children.Where("DocumentTypeAlias == @0", "Affiliatecontainer").First();
 	var affilates = affiliateContainer.Children.Where("DocumentTypeAlias == @0", "Affiliate");
+
+	var ReCapcha_SiteKey = System.Configuration.ConfigurationManager.AppSettings["ReCapcha_SiteKey"];
 
 }
 @section title {  @CurrentPage.pageTitle }
@@ -392,6 +394,7 @@
 						<input type="text" class="form-control col-md-4" name="Email" placeholder="Your Email *" id="Email" required data-validation-required-message="Please enter your email address." />
 						<input type="text" class="form-control col-md-4" name="Phone" placeholder="Your Contact Number *" id="Phone" required data-validation-required-message="Please enter your a number where we can contact you." />
 						<textarea name="Comments" class="form-control" id="Comments" placeholder="Your Message *" required data-validation-required-message="Please enter a message."></textarea>
+						<div class="g-recaptcha" data-sitekey="@ReCapcha_SiteKey"></div>
 						<input class="btn btn-primary mt30 pull-right" type="submit" name="submit" value="Submit" />
 					</form>
 				</div>
@@ -427,12 +430,7 @@
 			$("#PostContactUs").slideUp(750, function () {
 				$('#PostContactUs').hide();
 				$('#submit').attr('disabled', 'disabled');
-				$.post(action, {
-					Name: $('#Name').val(),
-					Email: $('#Email').val(),
-					Phone: $('#Phone').val(),
-					Comments: $('#Comments').val()
-				},
+				$.post(action, $(this).serialize(),
 					function (data) {
 						debugger;
 						document.getElementById('message').innerHTML = data;
